@@ -12,6 +12,7 @@ public class Player {
     private ArrayList<Card> firstRow;
     private ArrayList<Card> secondRow;
     private ArrayList<Card> hand;
+    private int mana;
 
     public Player(Deck deck, CardInput card) {
         this.currentDeck = deck;
@@ -22,6 +23,7 @@ public class Player {
             case "General Kocioraw" -> new GeneralKocioraw(card);
             default -> null;
         };
+        this.mana = 0;
     }
 
     public Deck getCurrentDeck() {
@@ -44,6 +46,10 @@ public class Player {
         return hand;
     }
 
+    public int getMana() {
+        return mana;
+    }
+
     public void setCurrentDeck(Deck currentDeck) {
         this.currentDeck = currentDeck;
     }
@@ -62,5 +68,9 @@ public class Player {
 
     public void setHand(ArrayList<Card> hand) {
         this.hand = hand;
+    }
+
+    public void setMana(int mana) {
+        this.mana = mana;
     }
 }
