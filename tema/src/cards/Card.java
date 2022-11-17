@@ -49,7 +49,6 @@ public class Card {
         this.name = new String(card.getName());
     }
 
-    //  copy constructor
     public Card(Card card) {
         this.mana = card.getMana();
         this.description = new String(card.getDescription());

@@ -14,12 +14,14 @@ public class Game {
     private int seed;
     private int startingPlayer;
 
+    private ArrayList<ArrayList<Minion>> table = new ArrayList<ArrayList<Minion>>(4);
+
     public Game(GameInput game, DecksInput decksForPlayer1, DecksInput decksForPLayer2) {
         Deck deckForPlayer1 = new Deck(decksForPlayer1.getDecks().get(game.getStartGame().getPlayerOneDeckIdx()));
         Deck deckForPlayer2 = new Deck(decksForPLayer2.getDecks().get(game.getStartGame().getPlayerTwoDeckIdx()));
 
-        player1 = new Player(deckForPlayer1, game.getStartGame().getPlayerOneHero());
-        player2 = new Player(deckForPlayer2, game.getStartGame().getPlayerTwoHero());
+        player1 = new Player(deckForPlayer1, game.getStartGame().getPlayerOneHero(), 2, 3);
+        player2 = new Player(deckForPlayer2, game.getStartGame().getPlayerTwoHero(), 0, 1);
         seed = game.getStartGame().getShuffleSeed();
         startingPlayer = game.getStartGame().getStartingPlayer();
 
@@ -42,10 +44,19 @@ public class Game {
         int mana = 1;
 
         for (ActionsInput action : actions) {
+            // if we start a new round, we give each player a card
+            if (howManyPlayersFinishedTheirTurn == 0) {
+                player1.getHand().add(player1.getCurrentDeck().getTotalCards().remove(0));
+                player2.getHand().add(player2.getCurrentDeck().getTotalCards().remove(0));
+            }
+
             switch (action.getCommand()) {
                 case "endPlayerTurn":
-                    players.get(howManyPlayersFinishedTheirTurn).defrost();
+                    // before getting to the next turn, defrost frozen cards
+                    players.get(howManyPlayersFinishedTheirTurn).defrost(table.get(players.get(howManyPlayersFinishedTheirTurn).getIndexRow1()), table.get(players.get(howManyPlayersFinishedTheirTurn).getIndexRow2()));
                     ++howManyPlayersFinishedTheirTurn;
+
+                    // end of a round, prepare new one
                     if (howManyPlayersFinishedTheirTurn == 2) {
                         howManyPlayersFinishedTheirTurn = 0;
                         if (mana < 10) {

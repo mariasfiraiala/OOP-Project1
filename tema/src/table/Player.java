@@ -9,12 +9,11 @@ import java.util.ArrayList;
 public class Player {
     private Deck currentDeck;
     private Hero hero;
-    private ArrayList<Minion> firstRow;
-    private ArrayList<Minion> secondRow;
     private ArrayList<Card> hand;
     private int mana;
+    private int indexRow1, indexRow2;
 
-    public Player(Deck deck, CardInput card) {
+    public Player(Deck deck, CardInput card, int indexRow1, int indexRow2) {
         this.currentDeck = deck;
         this.hero = switch (card.getName()) {
             case "Lord Royce" -> new LordRoyce(card);
@@ -24,6 +23,8 @@ public class Player {
             default -> null;
         };
         this.mana = 0;
+        this.indexRow1 = indexRow1;
+        this.indexRow2 = indexRow2;
     }
 
     public Deck getCurrentDeck() {
@@ -34,20 +35,20 @@ public class Player {
         return hero;
     }
 
-    public ArrayList<Minion> getFirstRow() {
-        return firstRow;
-    }
-
-    public ArrayList<Minion> getSecondRow() {
-        return secondRow;
-    }
-
     public ArrayList<Card> getHand() {
         return hand;
     }
 
     public int getMana() {
         return mana;
+    }
+
+    public int getIndexRow1() {
+        return indexRow1;
+    }
+
+    public int getIndexRow2() {
+        return indexRow2;
     }
 
     public void setCurrentDeck(Deck currentDeck) {
@@ -58,14 +59,6 @@ public class Player {
         this.hero = hero;
     }
 
-    public void setFirstRow(ArrayList<Minion> firstRow) {
-        this.firstRow = firstRow;
-    }
-
-    public void setSecondRow(ArrayList<Minion> secondRow) {
-        this.secondRow = secondRow;
-    }
-
     public void setHand(ArrayList<Card> hand) {
         this.hand = hand;
     }
@@ -74,7 +67,15 @@ public class Player {
         this.mana = mana;
     }
 
-    public void defrost() {
+    public void setIndexRow1(int indexRow1) {
+        this.indexRow1 = indexRow1;
+    }
+
+    public void setIndexRow2(int indexRow2) {
+        this.indexRow2 = indexRow2;
+    }
+
+    public void defrost(ArrayList<Minion> firstRow, ArrayList<Minion> secondRow) {
         for (Minion minion : firstRow) {
             if (minion.getFrozen() == true)
                 minion.setFrozen(false);
