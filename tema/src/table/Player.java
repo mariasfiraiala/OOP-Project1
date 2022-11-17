@@ -9,8 +9,8 @@ import java.util.ArrayList;
 public class Player {
     private Deck currentDeck;
     private Hero hero;
-    private ArrayList<Card> firstRow;
-    private ArrayList<Card> secondRow;
+    private ArrayList<Minion> firstRow;
+    private ArrayList<Minion> secondRow;
     private ArrayList<Card> hand;
     private int mana;
 
@@ -34,11 +34,11 @@ public class Player {
         return hero;
     }
 
-    public ArrayList<Card> getFirstRow() {
+    public ArrayList<Minion> getFirstRow() {
         return firstRow;
     }
 
-    public ArrayList<Card> getSecondRow() {
+    public ArrayList<Minion> getSecondRow() {
         return secondRow;
     }
 
@@ -58,11 +58,11 @@ public class Player {
         this.hero = hero;
     }
 
-    public void setFirstRow(ArrayList<Card> firstRow) {
+    public void setFirstRow(ArrayList<Minion> firstRow) {
         this.firstRow = firstRow;
     }
 
-    public void setSecondRow(ArrayList<Card> secondRow) {
+    public void setSecondRow(ArrayList<Minion> secondRow) {
         this.secondRow = secondRow;
     }
 
@@ -72,5 +72,17 @@ public class Player {
 
     public void setMana(int mana) {
         this.mana = mana;
+    }
+
+    public void defrost() {
+        for (Minion minion : firstRow) {
+            if (minion.getFrozen() == true)
+                minion.setFrozen(false);
+        }
+
+        for (Minion minion : secondRow) {
+            if (minion.getFrozen() == true)
+                minion.setFrozen(false);
+        }
     }
 }

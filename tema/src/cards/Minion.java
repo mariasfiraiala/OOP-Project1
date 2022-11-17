@@ -6,8 +6,6 @@ public class Minion extends Card {
     private int health;
     private int attackDamage;
     private boolean isFrozen;
-
-    // TODO setters getters
     private int position;
     private int haveAttacked;
 
@@ -23,6 +21,14 @@ public class Minion extends Card {
         return isFrozen;
     }
 
+    public int getPosition() {
+        return position;
+    }
+
+    public int getHaveAttacked() {
+        return haveAttacked;
+    }
+
     public void setHealth(int health) {
         this.health = health;
     }
@@ -33,6 +39,14 @@ public class Minion extends Card {
 
     public void setFrozen(boolean frozen) {
         isFrozen = frozen;
+    }
+
+    public void setPosition(int position) {
+        this.position = position;
+    }
+
+    public void setHaveAttacked(int haveAttacked) {
+        this.haveAttacked = haveAttacked;
     }
 
     public Minion(CardInput card) {

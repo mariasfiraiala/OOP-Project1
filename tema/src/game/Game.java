@@ -10,8 +10,8 @@ import java.util.Random;
 
 public class Game {
     private Player player1, player2;
+    private ArrayList<Player> players;
     private int seed;
-
     private int startingPlayer;
 
     public Game(GameInput game, DecksInput decksForPlayer1, DecksInput decksForPLayer2) {
@@ -22,6 +22,14 @@ public class Game {
         player2 = new Player(deckForPlayer2, game.getStartGame().getPlayerTwoHero());
         seed = game.getStartGame().getShuffleSeed();
         startingPlayer = game.getStartGame().getStartingPlayer();
+
+        if (startingPlayer == 1) {
+            players.add(player1);
+            players.add(player2);
+        } else {
+            players.add(player2);
+            players.add(player1);
+        }
     }
 
     public void shuffle() {
@@ -34,18 +42,21 @@ public class Game {
         int mana = 1;
 
         for (ActionsInput action : actions) {
-            if (action.getCommand().compareTo("endPlayerTurn") == 0) {
-                ++howManyPlayersFinishedTheirTurn;
-                if (howManyPlayersFinishedTheirTurn == 2) {
-                    howManyPlayersFinishedTheirTurn = 0;
-                    ++mana;
-                    player1.setMana(player1.getMana() + mana);
-                    player2.setMana(player2.getMana() + mana);
-                }
+            switch (action.getCommand()) {
+                case "endPlayerTurn":
+                    players.get(howManyPlayersFinishedTheirTurn).defrost();
+                    ++howManyPlayersFinishedTheirTurn;
+                    if (howManyPlayersFinishedTheirTurn == 2) {
+                        howManyPlayersFinishedTheirTurn = 0;
+                        if (mana < 10) {
+                            ++mana;
+                        }
+                        player1.setMana(player1.getMana() + mana);
+                        player2.setMana(player2.getMana() + mana);
+                    }
+                    break;
             }
         }
-
         return 1;
     }
-
 }
