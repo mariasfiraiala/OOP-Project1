@@ -10,6 +10,8 @@ public class Card {
     private ArrayList<String> colors;
     private String name;
 
+    private String type;
+
     public int getMana() {
         return mana;
     }
@@ -24,6 +26,10 @@ public class Card {
 
     public String getName() {
         return name;
+    }
+
+    public String getType() {
+        return type;
     }
 
     public void setMana(int mana) {
@@ -42,11 +48,24 @@ public class Card {
         this.name = name;
     }
 
+    public void setType(String type) {
+        this.type = type;
+    }
+
     public Card(CardInput card) {
         this.mana = card.getMana();
         this.description = new String(card.getDescription());
         this.colors = new ArrayList<String>(card.getColors());
         this.name = new String(card.getName());
+        if (name.indexOf("Sentinel, Berserker, Goliath, Warden, The Ripper, Miraj, The Cursed One, Disciple") != -1) {
+            this.type =  new String("Minion");
+        }
+        else if(name.indexOf("Firestorm, Winterfell, Heart Hound") != -1) {
+            this.type = new String("Environment");
+        }
+        else {
+            this.type = new String("Hero");
+        }
     }
 
     public Card(Card card) {

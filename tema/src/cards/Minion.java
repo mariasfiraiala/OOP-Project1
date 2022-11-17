@@ -54,5 +54,12 @@ public class Minion extends Card {
         this.health = card.getHealth();
         this.attackDamage = card.getAttackDamage();
         this.isFrozen = false;
+
+        if (this.getName().indexOf("The Ripper, Miraj, Goliath, Warden") != -1) {
+            this.position = 1;
+        }
+        else {
+            this.position = 0;
+        }
     }
 }

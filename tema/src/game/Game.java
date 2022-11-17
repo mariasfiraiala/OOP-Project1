@@ -2,6 +2,7 @@ package game;
 
 import cards.*;
 import fileio.*;
+import table.Commands;
 import table.Player;
 
 import java.util.ArrayList;
@@ -69,6 +70,10 @@ public class Game {
                         player1.setMana(player1.getMana() + mana);
                         player2.setMana(player2.getMana() + mana);
                     }
+                    break;
+                case "placeCard":
+                    Commands.RegularCommands placeCard = new Commands.RegularCommands();
+                    placeCard.applyPlaceCard(action.getHandIdx(), players.get(howManyPlayersFinishedTheirTurn), table);
                     break;
             }
         }
