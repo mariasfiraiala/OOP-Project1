@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class Player {
     private Deck currentDeck;
     private Hero hero;
-    private ArrayList<Card> hand;
+    private ArrayList<Card> hand = new ArrayList<Card>();
     private int mana;
     private int indexRow1, indexRow2;
 

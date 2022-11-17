@@ -10,11 +10,11 @@ import java.util.Random;
 
 public class Game {
     private Player player1, player2;
-    private ArrayList<Player> players;
+    private ArrayList<Player> players = new ArrayList<Player>(2);
     private int seed;
     private int startingPlayer;
 
-    private ArrayList<ArrayList<Minion>> table = new ArrayList<ArrayList<Minion>>(4);
+    private ArrayList<Minion>[] table = new ArrayList[4];
 
     public Game(GameInput game, DecksInput decksForPlayer1, DecksInput decksForPLayer2) {
         Deck deckForPlayer1 = new Deck(decksForPlayer1.getDecks().get(game.getStartGame().getPlayerOneDeckIdx()));
@@ -31,6 +31,10 @@ public class Game {
         } else {
             players.add(player2);
             players.add(player1);
+        }
+
+        for (int i = 0; i < 4; ++i) {
+            table[i] = new ArrayList<Minion>();
         }
     }
 
@@ -53,7 +57,7 @@ public class Game {
             switch (action.getCommand()) {
                 case "endPlayerTurn":
                     // before getting to the next turn, defrost frozen cards
-                    players.get(howManyPlayersFinishedTheirTurn).defrost(table.get(players.get(howManyPlayersFinishedTheirTurn).getIndexRow1()), table.get(players.get(howManyPlayersFinishedTheirTurn).getIndexRow2()));
+                    players.get(howManyPlayersFinishedTheirTurn).defrost(table[players.get(howManyPlayersFinishedTheirTurn).getIndexRow1()], table[players.get(howManyPlayersFinishedTheirTurn).getIndexRow2()]);
                     ++howManyPlayersFinishedTheirTurn;
 
                     // end of a round, prepare new one
