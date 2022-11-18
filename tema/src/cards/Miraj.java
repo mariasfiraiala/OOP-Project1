@@ -12,4 +12,8 @@ public class Miraj extends Minion {
     public Miraj(CardInput card) {
         super(card);
     }
+
+    public Miraj(Miraj card) {
+        super(card);
+    }
 }

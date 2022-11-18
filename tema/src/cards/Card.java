@@ -70,4 +70,21 @@ public class Card {
         }
     }
 
+    public Card(Card card) {
+        this.mana = card.getMana();
+        this.description = new String(card.getDescription());
+        this.colors = new ArrayList<String>(card.getColors());
+        this.name = new String(card.getName());
+
+        String isMinion = new String("Sentinel, Berserker, Goliath, Warden, The Ripper, Miraj, The Cursed One, Disciple");
+        String isEnvironment = new String("Firestorm, Winterfell, Heart Hound");
+
+        if (isMinion.indexOf(card.getName()) != -1) {
+            this.type =  new String("Minion");
+        } else if(isEnvironment.indexOf(card.getName()) != -1) {
+            this.type = new String("Environment");
+        } else {
+            this.type = new String("Hero");
+        }
+    }
 }

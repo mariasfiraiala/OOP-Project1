@@ -13,4 +13,8 @@ public class Winterfell extends Environment {
     public Winterfell(CardInput card) {
         super(card);
     }
+
+    public Winterfell(Winterfell card) {
+        super(card);
+    }
 }

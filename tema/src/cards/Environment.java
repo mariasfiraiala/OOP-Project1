@@ -9,5 +9,8 @@ public abstract class Environment extends Card {
     public Environment(CardInput card) {
         super(card);
     }
+    public Environment(Environment card) {
+        super(card);
+    }
 }
 

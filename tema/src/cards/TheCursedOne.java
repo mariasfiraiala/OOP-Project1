@@ -13,4 +13,8 @@ public class TheCursedOne extends Minion {
     public TheCursedOne(CardInput card) {
         super(card);
     }
+
+    public TheCursedOne(TheCursedOne card) {
+        super(card);
+    }
 }

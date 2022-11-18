@@ -56,6 +56,7 @@ public class Game {
             }
 
             switch (action.getCommand()) {
+                // active commands
                 case "endPlayerTurn":
                     // before getting to the next turn, defrost frozen cards
                     players.get(howManyPlayersFinishedTheirTurn).defrost(table[players.get(howManyPlayersFinishedTheirTurn).getIndexFrontRow()], table[players.get(howManyPlayersFinishedTheirTurn).getIndexBackRow()]);
@@ -80,6 +81,16 @@ public class Game {
                     Commands.RegularCommands cardUsesAttack = new Commands.RegularCommands();
                     cardUsesAttack.applyCardUsesAttack(action.getCardAttacker(), action.getCardAttacked(), players.get(howManyPlayersFinishedTheirTurn), players.get((howManyPlayersFinishedTheirTurn + 1) % 2), table);
                     break;
+
+                // debug commands
+                case "getPlayerDeck":
+                    Commands.DebugCommands getPlayerDeck = new Commands.DebugCommands();
+                    if (action.getPlayerIdx() == 1) {
+                        getPlayerDeck.getPlayerDeck(action.getPlayerIdx(), player1);
+                    } else {
+                        getPlayerDeck.getPlayerDeck(action.getPlayerIdx(), player2);
+                    }
+
             }
         }
         return 1;

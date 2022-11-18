@@ -22,4 +22,8 @@ public class HeartHound extends Environment {
     public HeartHound(CardInput card) {
         super(card);
     }
+
+    public HeartHound(HeartHound card) {
+        super(card);
+    }
 }

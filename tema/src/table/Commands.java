@@ -1,6 +1,9 @@
 package table;
 
-import cards.Minion;
+import cards.*;
+import com.fasterxml.jackson.databind.node.JsonNodeFactory;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import fileio.CardInput;
 import fileio.Coordinates;
 
 import java.util.ArrayList;
@@ -60,6 +63,49 @@ public class Commands {
     }
 
     public static class DebugCommands {
+        public void getPlayerDeck(int playerIdx, Player player) {
+            ObjectNode node = JsonNodeFactory.instance.objectNode();
+            node.put("command", "getPlayerDeck");
+            node.put("playerIdx", playerIdx);
 
+            ArrayList<Card> totalCards = new ArrayList<Card>();
+
+            for (Card card : player.getCurrentDeck().getTotalCards()) {
+                String isMinion = new String("Sentinel, Berserker, Goliath, Warden, The Ripper, Miraj, The Cursed One, Disciple");
+                String isSpecialMinion = new String("Miraj, The Ripper, Disciple, The Cursed One");
+
+                if (isMinion.indexOf(card.getName()) != -1) {
+                    if (isSpecialMinion.indexOf(card.getName()) == -1) {
+                        Minion minion = new Minion((Minion) card);
+                        totalCards.add(minion);
+                    } else if (card.getName().compareTo("Miraj") == 0) {
+                        Miraj miraj = new Miraj((Miraj)card);
+                        totalCards.add(miraj);
+                    } else if (card.getName().compareTo("The Ripper") == 0) {
+                        TheRipper theRipper = new TheRipper((TheRipper) card);
+                        totalCards.add(theRipper);
+                    } else if (card.getName().compareTo("Disciple") == 0) {
+                        Disciple disciple = new Disciple((Disciple) card);
+                        totalCards.add(disciple);
+                    } else {
+                        TheCursedOne theCursedOne = new TheCursedOne((TheCursedOne) card);
+                        totalCards.add(theCursedOne);
+                    }
+                } else {
+                    if (card.getName().compareTo("Firestorm") == 0) {
+                        Firestorm firestorm = new Firestorm((Firestorm) card);
+                        totalCards.add(firestorm);
+                    } else if (card.getName().compareTo("Winterfell") == 0) {
+                        Winterfell winterfell = new Winterfell((Winterfell) card);
+                        totalCards.add(winterfell);
+                    } else {
+                        HeartHound heartHound = new HeartHound((HeartHound) card);
+                        totalCards.add(heartHound);
+                    }
+                }
+            }
+
+            node.putPOJO("output", totalCards);
+        }
     }
 }

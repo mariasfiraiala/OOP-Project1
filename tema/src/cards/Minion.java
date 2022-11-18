@@ -66,4 +66,22 @@ public class Minion extends Card {
             this.position = 0;
         }
     }
+
+    public Minion(Minion card) {
+        super(card);
+        this.health = card.getHealth();
+        this.attackDamage = card.getAttackDamage();
+        this.isFrozen = false;
+        this.hasAttacked = false;
+
+        String isFrontRow = new String("The Ripper, Miraj, Goliath, Warden");
+
+
+        if (this.getName().indexOf("The Ripper, Miraj, Goliath, Warden") != -1) {
+            this.position = 1;
+        }
+        else {
+            this.position = 0;
+        }
+    }
 }

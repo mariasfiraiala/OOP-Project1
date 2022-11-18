@@ -7,6 +7,10 @@ public class TheRipper extends Minion {
         super(card);
     }
 
+    public TheRipper(TheRipper card) {
+        super(card);
+    }
+
     private void WeakKnees (Minion minion) {
         minion.setHealth(minion.getHealth() - 2);
     }
