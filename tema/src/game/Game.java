@@ -50,7 +50,7 @@ public class Game {
 
         for (ActionsInput action : actions) {
             // if we start a new round, we give each player a card
-            if (howManyPlayersFinishedTheirTurn == 0) {
+            if (howManyPlayersFinishedTheirTurn == 0 && player1.getCurrentDeck().getTotalCards().size() != 0 && player2.getCurrentDeck().getTotalCards().size() != 0) {
                 player1.getHand().add(player1.getCurrentDeck().getTotalCards().remove(0));
                 player2.getHand().add(player2.getCurrentDeck().getTotalCards().remove(0));
             }
@@ -59,6 +59,7 @@ public class Game {
                 case "endPlayerTurn":
                     // before getting to the next turn, defrost frozen cards
                     players.get(howManyPlayersFinishedTheirTurn).defrost(table[players.get(howManyPlayersFinishedTheirTurn).getIndexFrontRow()], table[players.get(howManyPlayersFinishedTheirTurn).getIndexBackRow()]);
+                    players.get(howManyPlayersFinishedTheirTurn).refreshAttackers(table[players.get(howManyPlayersFinishedTheirTurn).getIndexFrontRow()], table[players.get(howManyPlayersFinishedTheirTurn).getIndexBackRow()]);
                     ++howManyPlayersFinishedTheirTurn;
 
                     // end of a round, prepare new one
@@ -74,6 +75,10 @@ public class Game {
                 case "placeCard":
                     Commands.RegularCommands placeCard = new Commands.RegularCommands();
                     placeCard.applyPlaceCard(action.getHandIdx(), players.get(howManyPlayersFinishedTheirTurn), table);
+                    break;
+                case "cardUsesAttack":
+                    Commands.RegularCommands cardUsesAttack = new Commands.RegularCommands();
+                    cardUsesAttack.applyCardUsesAttack(action.getCardAttacker(), action.getCardAttacked(), players.get(howManyPlayersFinishedTheirTurn), players.get((howManyPlayersFinishedTheirTurn + 1) % 2), table);
                     break;
             }
         }

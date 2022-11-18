@@ -7,7 +7,7 @@ public class Minion extends Card {
     private int attackDamage;
     private boolean isFrozen;
     private int position;
-    private int haveAttacked;
+    private boolean hasAttacked;
 
     public int getHealth() {
         return health;
@@ -25,8 +25,8 @@ public class Minion extends Card {
         return position;
     }
 
-    public int getHaveAttacked() {
-        return haveAttacked;
+    public boolean getHasAttacked() {
+        return hasAttacked;
     }
 
     public void setHealth(int health) {
@@ -45,8 +45,8 @@ public class Minion extends Card {
         this.position = position;
     }
 
-    public void setHaveAttacked(int haveAttacked) {
-        this.haveAttacked = haveAttacked;
+    public void setHasAttacked(boolean hasAttacked) {
+        this.hasAttacked = hasAttacked;
     }
 
     public Minion(CardInput card) {
@@ -54,6 +54,7 @@ public class Minion extends Card {
         this.health = card.getHealth();
         this.attackDamage = card.getAttackDamage();
         this.isFrozen = false;
+        this.hasAttacked = false;
 
         String isFrontRow = new String("The Ripper, Miraj, Goliath, Warden");
 

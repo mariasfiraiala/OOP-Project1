@@ -85,4 +85,16 @@ public class Player {
                 minion.setFrozen(false);
         }
     }
+
+    public void refreshAttackers(ArrayList<Minion> firstRow, ArrayList<Minion> secondRow) {
+        for (Minion minion : firstRow) {
+            if (minion.getHasAttacked() == true)
+                minion.setHasAttacked(false);
+        }
+
+        for (Minion minion : secondRow) {
+            if (minion.getHasAttacked() == true)
+                minion.setHasAttacked(false);
+        }
+    }
 }
