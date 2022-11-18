@@ -68,11 +68,4 @@ public class Card {
         }
     }
 
-    public Card(Card card) {
-        this.mana = card.getMana();
-        this.description = new String(card.getDescription());
-        this.colors = new ArrayList<String>(card.getColors());
-        this.name = new String(card.getName());
-    }
-
 }

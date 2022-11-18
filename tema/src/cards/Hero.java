@@ -4,15 +4,15 @@ import fileio.CardInput;
 
 import java.util.ArrayList;
 
-public class Hero extends Card {
+public abstract class Hero extends Card {
     private int health;
-    // TODO setters and getters
     private int hasAttacked;
 
     public Hero(CardInput card) {
         super(card);
         this.health = 30;
     }
+    public abstract void heroAction(ArrayList<Card> cards);
 
     public int getHealth() {
         return health;
