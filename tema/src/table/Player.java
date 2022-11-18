@@ -2,7 +2,6 @@ package table;
 
 import cards.*;
 import fileio.CardInput;
-import fileio.DecksInput;
 
 import java.util.ArrayList;
 
@@ -11,9 +10,9 @@ public class Player {
     private Hero hero;
     private ArrayList<Card> hand = new ArrayList<Card>();
     private int mana;
-    private int indexRow1, indexRow2;
+    private int indexFrontRow, indexBackRow;
 
-    public Player(Deck deck, CardInput card, int indexRow1, int indexRow2) {
+    public Player(Deck deck, CardInput card, int indexFrontRow, int indexBackRow) {
         this.currentDeck = deck;
         this.hero = switch (card.getName()) {
             case "Lord Royce" -> new LordRoyce(card);
@@ -23,8 +22,8 @@ public class Player {
             default -> null;
         };
         this.mana = 0;
-        this.indexRow1 = indexRow1;
-        this.indexRow2 = indexRow2;
+        this.indexFrontRow = indexFrontRow;
+        this.indexBackRow = indexBackRow;
     }
 
     public Deck getCurrentDeck() {
@@ -43,12 +42,12 @@ public class Player {
         return mana;
     }
 
-    public int getIndexRow1() {
-        return indexRow1;
+    public int getIndexFrontRow() {
+        return indexFrontRow;
     }
 
-    public int getIndexRow2() {
-        return indexRow2;
+    public int getIndexBackRow() {
+        return indexBackRow;
     }
 
     public void setCurrentDeck(Deck currentDeck) {
@@ -67,12 +66,12 @@ public class Player {
         this.mana = mana;
     }
 
-    public void setIndexRow1(int indexRow1) {
-        this.indexRow1 = indexRow1;
+    public void setIndexFrontRow(int indexFrontRow) {
+        this.indexFrontRow = indexFrontRow;
     }
 
-    public void setIndexRow2(int indexRow2) {
-        this.indexRow2 = indexRow2;
+    public void setIndexBackRow(int indexBackRow) {
+        this.indexBackRow = indexBackRow;
     }
 
     public void defrost(ArrayList<Minion> firstRow, ArrayList<Minion> secondRow) {

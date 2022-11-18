@@ -1,6 +1,5 @@
 package table;
 
-import cards.Card;
 import cards.Minion;
 
 import java.util.ArrayList;
@@ -12,10 +11,14 @@ public class Commands {
                 System.out.println("Cannot place environment card on table.");
             } else if (player.getHand().get(handIndex).getMana() > player.getMana()) {
                 System.out.println("Not enough mana to place card on table.");
-            }else if (table[player.getIndexRow1() + ((Minion)player.getHand().get(handIndex)).getPosition()].size() > 5) {
+            }else if (table[player.getIndexFrontRow() + ((Minion)player.getHand().get(handIndex)).getPosition()].size() > 5) {
                 System.out.println("Cannot place card on table since row is full.");
             } else {
-                table[player.getIndexRow1() + ((Minion)player.getHand().get(handIndex)).getPosition()].add(((Minion)player.getHand().get(handIndex)));
+                if (player.getIndexFrontRow() == 2) {
+                    table[player.getIndexBackRow() - ((Minion)player.getHand().get(handIndex)).getPosition()].add(((Minion)player.getHand().get(handIndex)));
+                } else {
+                    table[player.getIndexBackRow() + ((Minion)player.getHand().get(handIndex)).getPosition()].add(((Minion) player.getHand().get(handIndex)));
+                }
             }
         }
     }

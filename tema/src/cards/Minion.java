@@ -55,6 +55,9 @@ public class Minion extends Card {
         this.attackDamage = card.getAttackDamage();
         this.isFrozen = false;
 
+        String isFrontRow = new String("The Ripper, Miraj, Goliath, Warden");
+
+
         if (this.getName().indexOf("The Ripper, Miraj, Goliath, Warden") != -1) {
             this.position = 1;
         }

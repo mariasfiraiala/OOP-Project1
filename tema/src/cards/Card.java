@@ -57,13 +57,15 @@ public class Card {
         this.description = new String(card.getDescription());
         this.colors = new ArrayList<String>(card.getColors());
         this.name = new String(card.getName());
-        if (name.indexOf("Sentinel, Berserker, Goliath, Warden, The Ripper, Miraj, The Cursed One, Disciple") != -1) {
+
+        String isMinion = new String("Sentinel, Berserker, Goliath, Warden, The Ripper, Miraj, The Cursed One, Disciple");
+        String isEnvironment = new String("Firestorm, Winterfell, Heart Hound");
+
+        if (isMinion.indexOf(card.getName()) != -1) {
             this.type =  new String("Minion");
-        }
-        else if(name.indexOf("Firestorm, Winterfell, Heart Hound") != -1) {
+        } else if(isEnvironment.indexOf(card.getName()) != -1) {
             this.type = new String("Environment");
-        }
-        else {
+        } else {
             this.type = new String("Hero");
         }
     }

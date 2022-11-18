@@ -22,7 +22,7 @@ public class Game {
         Deck deckForPlayer2 = new Deck(decksForPLayer2.getDecks().get(game.getStartGame().getPlayerTwoDeckIdx()));
 
         player1 = new Player(deckForPlayer1, game.getStartGame().getPlayerOneHero(), 2, 3);
-        player2 = new Player(deckForPlayer2, game.getStartGame().getPlayerTwoHero(), 0, 1);
+        player2 = new Player(deckForPlayer2, game.getStartGame().getPlayerTwoHero(), 1, 0);
         seed = game.getStartGame().getShuffleSeed();
         startingPlayer = game.getStartGame().getStartingPlayer();
 
@@ -58,7 +58,7 @@ public class Game {
             switch (action.getCommand()) {
                 case "endPlayerTurn":
                     // before getting to the next turn, defrost frozen cards
-                    players.get(howManyPlayersFinishedTheirTurn).defrost(table[players.get(howManyPlayersFinishedTheirTurn).getIndexRow1()], table[players.get(howManyPlayersFinishedTheirTurn).getIndexRow2()]);
+                    players.get(howManyPlayersFinishedTheirTurn).defrost(table[players.get(howManyPlayersFinishedTheirTurn).getIndexFrontRow()], table[players.get(howManyPlayersFinishedTheirTurn).getIndexBackRow()]);
                     ++howManyPlayersFinishedTheirTurn;
 
                     // end of a round, prepare new one

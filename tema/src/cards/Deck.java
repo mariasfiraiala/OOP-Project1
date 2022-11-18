@@ -33,10 +33,11 @@ public class Deck {
         this.totalCards = new ArrayList<>(noCardsInDeck);
 
         for (CardInput card : cards) {
-            Card myCard = new Card(card);
+            String isMinion = new String("Sentinel, Berserker, Goliath, Warden, The Ripper, Miraj, The Cursed One, Disciple");
+            String isSpecialMinion = new String("Miraj, The Ripper, Disciple, The Cursed One");
 
-            if (card.getName().indexOf("Sentinel, Berserker, Goliath, Warden, The Ripper, Miraj, The Cursed One, Disciple") != -1) {
-                if (card.getName().indexOf("Miraj, The Ripper, Disciple, The Cursed One") == -1) {
+            if (isMinion.indexOf(card.getName()) != -1) {
+                if (isSpecialMinion.indexOf(card.getName()) == -1) {
                     Minion minion = new Minion(card);
                     totalCards.add(minion);
                 } else if (card.getName().compareTo("Miraj") == 0) {
