@@ -84,6 +84,38 @@ public class Commands {
                 }
             }
         }
+
+        public static void useEnvironmentCard(int handIdx, int affectedRow, Player attacker, Player attacked, ArrayList<Minion>[] table, ArrayNode output) {
+            ObjectNode node = JsonNodeFactory.instance.objectNode();
+            node.put("command", "useEnvironmentCard");
+            node.put("handIdx", handIdx);
+            node.put("affectedRow", affectedRow);
+
+            if (attacker.getHand().get(handIdx).getType().compareTo("Environment") != 0) {
+                node.put("error", "Chosen card is not of type environment.");
+                output.addPOJO(node);
+            } else if (attacker.getMana() < attacker.getHand().get(handIdx).getMana()) {
+                node.put("error", "Not enough mana to use environment card.");
+                output.addPOJO(node);
+            } else if (affectedRow == attacker.getIndexFrontRow() || affectedRow == attacker.getIndexBackRow()) {
+                node.put("error", "Chosen row does not belong to the enemy.");
+                output.addPOJO(node);
+            } else if (attacker.getHand().get(handIdx).getName().compareTo("Heart Hound") == 0 && (affectedRow == attacked.getIndexFrontRow() && table[attacker.getIndexFrontRow()].size() >= 5) || (affectedRow ==  attacked.getIndexBackRow() && table[attacker.getIndexBackRow()].size() >= 5)) {
+                node.put("error", "Cannot steal enemy card since the player's row is full.");
+                output.addPOJO(node);
+            } else {
+                int attackerRow;
+                if (affectedRow == attacked.getIndexFrontRow()) {
+                    attackerRow = attacker.getIndexFrontRow();
+                } else {
+                    attackerRow = attacker.getIndexBackRow();
+                }
+
+                ((Environment) attacker.getHand().get(handIdx)).environmentAction(table[affectedRow], table[attackerRow]);
+                attacker.setMana(attacker.getMana() - attacker.getHand().get(handIdx).getMana());
+                attacker.getHand().remove(handIdx);
+            }
+        }
     }
 
     public static class DebugCommands {
@@ -238,6 +270,47 @@ public class Commands {
                 }
             }
             node.putPOJO("output", cardsOnTable);
+            output.addPOJO(node);
+        }
+
+        public static void getEnvironmentCardsInHand(int playerIdx, ArrayList<Card> hand, ArrayNode output) {
+            ObjectNode node = JsonNodeFactory.instance.objectNode();
+            node.put("command", "getEnvironmentCardsInHand");
+            node.put("playerIdx", playerIdx);
+
+            ArrayList<Environment> environmentCardsInHand = new ArrayList<Environment>();
+            for (Card card : hand) {
+                String isEnvironment = new String("Firestorm, Winterfell, Heart Hound");
+                if (isEnvironment.indexOf(card.getName()) != -1) {
+                    if (card.getName().compareTo("Firestorm") == 0) {
+                        Firestorm firestorm = new Firestorm((Firestorm) card);
+                        environmentCardsInHand.add(firestorm);
+                    } else if (card.getName().compareTo("Winterfell") == 0){
+                        Winterfell winterfell = new Winterfell((Winterfell) card);
+                        environmentCardsInHand.add(winterfell);
+                    } else {
+                        HeartHound heartHound = new HeartHound((HeartHound) card);
+                        environmentCardsInHand.add(heartHound);
+                    }
+                }
+            }
+
+            node.putPOJO("output", environmentCardsInHand);
+            output.addPOJO(node);
+        }
+
+        public static void getCardAtPosition(int x, int y, ArrayList<Minion>[] table, ArrayNode output) {
+            ObjectNode node = JsonNodeFactory.instance.objectNode();
+            node.put("command", "getCardAtPosition");
+            node.put("x", x);
+            node.put("y", y);
+
+            if (y > table[x].size() - 1) {
+                node.put("output", "No card available at that position.");
+            } else {
+                Minion minion = new Minion(table[x].get(y));
+                node.putPOJO("output", minion);
+            }
             output.addPOJO(node);
         }
     }

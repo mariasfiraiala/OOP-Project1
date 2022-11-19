@@ -121,6 +121,19 @@ public class Game {
                 case "getCardsOnTable":
                     Commands.DebugCommands.getCardsOnTable(table, output);
                     break;
+                case "getEnvironmentCardsInHand":
+                    if (action.getPlayerIdx() == 1) {
+                        Commands.DebugCommands.getEnvironmentCardsInHand(action.getPlayerIdx(), player1.getHand(), output);
+                    } else {
+                        Commands.DebugCommands.getEnvironmentCardsInHand(action.getPlayerIdx(), player2.getHand(), output);
+                    }
+                    break;
+                case "useEnvironmentCard":
+                    Commands.RegularCommands.useEnvironmentCard(action.getHandIdx(), action.getAffectedRow(), players.get(howManyPlayersFinishedTheirTurn), players.get((howManyPlayersFinishedTheirTurn + 1) % 2), table, output);
+                    break;
+                case "getCardAtPosition":
+                    Commands.DebugCommands.getCardAtPosition(action.getX(), action.getY(), table, output);
+                    break;
             }
         return 1;
     }
