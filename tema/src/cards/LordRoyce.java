@@ -14,7 +14,7 @@ public class LordRoyce extends  Hero {
                 indexToFreeze = cards.indexOf(card);
             }
 
-        ((Minion)(cards.get(indexToFreeze))).setFrozen(true);
+        ((Minion)(cards.get(indexToFreeze))).setIsFrozen(true);
     }
 
     public LordRoyce(CardInput card) {

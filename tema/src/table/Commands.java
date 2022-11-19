@@ -1,16 +1,16 @@
 package table;
 
 import cards.*;
+import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import fileio.CardInput;
 import fileio.Coordinates;
 
 import java.util.ArrayList;
 
 public class Commands {
     public static class RegularCommands {
-        public void applyPlaceCard(int handIndex, Player player, ArrayList<Minion>[] table) {
+        public static void applyPlaceCard(int handIndex, Player player, ArrayList<Minion>[] table) {
             if (player.getHand().get(handIndex).getType().compareTo("Environment") == 0) {
                 System.out.println("Cannot place environment card on table.");
             } else if (player.getHand().get(handIndex).getMana() > player.getMana()) {
@@ -27,7 +27,7 @@ public class Commands {
             }
         }
 
-        public void applyCardUsesAttack(Coordinates cardAttacker, Coordinates cardAttacked, Player attacker, Player attacked, ArrayList<Minion>[] table) {
+        public static void applyCardUsesAttack(Coordinates cardAttacker, Coordinates cardAttacked, Player attacker, Player attacked, ArrayList<Minion>[] table) {
             boolean hasTank = false;
             ArrayList<Minion> tanks = new ArrayList<Minion>();
 
@@ -48,7 +48,7 @@ public class Commands {
                 System.out.println("Attacked card does not belong to the enemy.");
             } else if (table[cardAttacker.getX()].get(cardAttacker.getY()).getHasAttacked() == true) {
                 System.out.println("Attacker card has already attacked this turn.");
-            } else if (table[cardAttacker.getX()].get(cardAttacker.getY()).getFrozen() == true) {
+            } else if (table[cardAttacker.getX()].get(cardAttacker.getY()).getIsFrozen() == true) {
                 System.out.println("Attacker card is frozen.");
             } else if (hasTank == true && tanks.contains(table[cardAttacked.getX()].get(cardAttacked.getY())) == false) {
                 System.out.println("Attacked card is not of type 'Tank’");
@@ -63,7 +63,7 @@ public class Commands {
     }
 
     public static class DebugCommands {
-        public void getPlayerDeck(int playerIdx, Player player) {
+        public static void getPlayerDeck(int playerIdx, Player player, ArrayNode output) {
             ObjectNode node = JsonNodeFactory.instance.objectNode();
             node.put("command", "getPlayerDeck");
             node.put("playerIdx", playerIdx);
@@ -106,6 +106,7 @@ public class Commands {
             }
 
             node.putPOJO("output", totalCards);
+            output.addPOJO(node);
         }
     }
 }

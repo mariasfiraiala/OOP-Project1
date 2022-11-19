@@ -1,5 +1,6 @@
 package cards;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import fileio.CardInput;
 
 import java.util.ArrayList;
@@ -9,7 +10,7 @@ public class Card {
     private String description;
     private ArrayList<String> colors;
     private String name;
-
+    @JsonIgnore
     private String type;
 
     public int getMana() {
@@ -86,5 +87,21 @@ public class Card {
         } else {
             this.type = new String("Hero");
         }
+    }
+
+    public String toString() {
+        return "CardInput{"
+                +  "mana="
+                + mana
+                +  ", description='"
+                + description
+                + '\''
+                + ", colors="
+                + colors
+                + ", name='"
+                +  ""
+                + name
+                + '\''
+                + '}';
     }
 }

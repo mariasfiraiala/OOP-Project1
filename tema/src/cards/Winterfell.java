@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class Winterfell extends Environment {
     public void environmentAction(ArrayList<Card> cards1, ArrayList<Card> cards2) {
         for (Card card : cards1)
-            ((Minion) card).setFrozen(true);
+            ((Minion) card).setIsFrozen(true);
     }
 
     public Winterfell(CardInput card) {

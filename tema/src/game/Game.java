@@ -1,6 +1,7 @@
 package game;
 
 import cards.*;
+import com.fasterxml.jackson.databind.node.ArrayNode;
 import fileio.*;
 import table.Commands;
 import table.Player;
@@ -44,16 +45,15 @@ public class Game {
         Collections.shuffle(this.player2.getCurrentDeck().getTotalCards(), new Random(seed));
     }
 
-    public int letThePlayersPlay(ArrayList<ActionsInput> actions) {
+    public int letThePlayersPlay(ArrayList<ActionsInput> actions, ArrayNode output) {
         int howManyPlayersFinishedTheirTurn = 0;
         int mana = 1;
+        if (player1.getCurrentDeck().getTotalCards().size() != 0 && player2.getCurrentDeck().getTotalCards().size() != 0) {
+            player1.getHand().add(player1.getCurrentDeck().getTotalCards().remove(0));
+            player2.getHand().add(player2.getCurrentDeck().getTotalCards().remove(0));
+        }
 
-        for (ActionsInput action : actions) {
-            // if we start a new round, we give each player a card
-            if (howManyPlayersFinishedTheirTurn == 0 && player1.getCurrentDeck().getTotalCards().size() != 0 && player2.getCurrentDeck().getTotalCards().size() != 0) {
-                player1.getHand().add(player1.getCurrentDeck().getTotalCards().remove(0));
-                player2.getHand().add(player2.getCurrentDeck().getTotalCards().remove(0));
-            }
+        for (ActionsInput action : actions)
 
             switch (action.getCommand()) {
                 // active commands
@@ -71,28 +71,30 @@ public class Game {
                         }
                         player1.setMana(player1.getMana() + mana);
                         player2.setMana(player2.getMana() + mana);
+
+                        if (player1.getCurrentDeck().getTotalCards().size() != 0 && player2.getCurrentDeck().getTotalCards().size() != 0) {
+                            player1.getHand().add(player1.getCurrentDeck().getTotalCards().remove(0));
+                            player2.getHand().add(player2.getCurrentDeck().getTotalCards().remove(0));
+                        }
                     }
                     break;
                 case "placeCard":
-                    Commands.RegularCommands placeCard = new Commands.RegularCommands();
-                    placeCard.applyPlaceCard(action.getHandIdx(), players.get(howManyPlayersFinishedTheirTurn), table);
+                    Commands.RegularCommands.applyPlaceCard(action.getHandIdx(), players.get(howManyPlayersFinishedTheirTurn), table);
                     break;
-                case "cardUsesAttack":
-                    Commands.RegularCommands cardUsesAttack = new Commands.RegularCommands();
-                    cardUsesAttack.applyCardUsesAttack(action.getCardAttacker(), action.getCardAttacked(), players.get(howManyPlayersFinishedTheirTurn), players.get((howManyPlayersFinishedTheirTurn + 1) % 2), table);
-                    break;
+//                case "cardUsesAttack":
+//                    Commands.RegularCommands cardUsesAttack = new Commands.RegularCommands();
+//                    cardUsesAttack.applyCardUsesAttack(action.getCardAttacker(), action.getCardAttacked(), players.get(howManyPlayersFinishedTheirTurn), players.get((howManyPlayersFinishedTheirTurn + 1) % 2), table);
+//                    break;
 
                 // debug commands
                 case "getPlayerDeck":
-                    Commands.DebugCommands getPlayerDeck = new Commands.DebugCommands();
                     if (action.getPlayerIdx() == 1) {
-                        getPlayerDeck.getPlayerDeck(action.getPlayerIdx(), player1);
+                        Commands.DebugCommands.getPlayerDeck(action.getPlayerIdx(), player1, output);
                     } else {
-                        getPlayerDeck.getPlayerDeck(action.getPlayerIdx(), player2);
+                        Commands.DebugCommands.getPlayerDeck(action.getPlayerIdx(), player2, output);
                     }
 
             }
-        }
         return 1;
     }
 }

@@ -76,13 +76,13 @@ public class Player {
 
     public void defrost(ArrayList<Minion> firstRow, ArrayList<Minion> secondRow) {
         for (Minion minion : firstRow) {
-            if (minion.getFrozen() == true)
-                minion.setFrozen(false);
+            if (minion.getIsFrozen() == true)
+                minion.setIsFrozen(false);
         }
 
         for (Minion minion : secondRow) {
-            if (minion.getFrozen() == true)
-                minion.setFrozen(false);
+            if (minion.getIsFrozen() == true)
+                minion.setIsFrozen(false);
         }
     }
 
