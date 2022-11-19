@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Arrays;
 import java.util.Objects;
 
 /**
@@ -45,7 +46,9 @@ public final class Main {
         }
         Files.createDirectories(path);
 
-        for (File file : Objects.requireNonNull(directory.listFiles())) {
+        File[] ceva = Objects.requireNonNull(directory.listFiles());
+        Arrays.sort(ceva);
+        for (File file : ceva) {
             String filepath = CheckerConstants.OUT_PATH + file.getName();
             File out = new File(filepath);
             boolean isCreated = out.createNewFile();

@@ -13,4 +13,8 @@ public class GeneralKocioraw extends Hero {
     public GeneralKocioraw(CardInput card) {
         super(card);
     }
+
+    public GeneralKocioraw(GeneralKocioraw card) {
+        super(card);
+    }
 }

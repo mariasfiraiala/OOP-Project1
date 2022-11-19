@@ -20,4 +20,8 @@ public class EmpressThorina extends Hero {
     public EmpressThorina(CardInput card) {
         super(card);
     }
+
+    public EmpressThorina(EmpressThorina card) {
+        super(card);
+    }
 }

@@ -79,7 +79,7 @@ public class Game {
                     }
                     break;
                 case "placeCard":
-                    Commands.RegularCommands.applyPlaceCard(action.getHandIdx(), players.get(howManyPlayersFinishedTheirTurn), table);
+                    Commands.RegularCommands.placeCard(action.getHandIdx(), players.get(howManyPlayersFinishedTheirTurn), table, output);
                     break;
 //                case "cardUsesAttack":
 //                    Commands.RegularCommands cardUsesAttack = new Commands.RegularCommands();
@@ -93,7 +93,34 @@ public class Game {
                     } else {
                         Commands.DebugCommands.getPlayerDeck(action.getPlayerIdx(), player2, output);
                     }
-
+                    break;
+                case "getPlayerHero":
+                    if (action.getPlayerIdx() == 1) {
+                        Commands.DebugCommands.getPlayerHero(action.getPlayerIdx(), player1, output);
+                    } else {
+                        Commands.DebugCommands.getPlayerHero(action.getPlayerIdx(), player2, output);
+                    }
+                    break;
+                case "getPlayerTurn":
+                    Commands.DebugCommands.getPlayerTurn(players.get(howManyPlayersFinishedTheirTurn), output);
+                    break;
+                case "getCardsInHand":
+                    if (action.getPlayerIdx() == 1) {
+                        Commands.DebugCommands.getCardsInHand(action.getPlayerIdx(), player1, output);
+                    } else {
+                        Commands.DebugCommands.getCardsInHand(action.getPlayerIdx(), player2, output);
+                    }
+                    break;
+                case "getPlayerMana":
+                    if (action.getPlayerIdx() == 1) {
+                        Commands.DebugCommands.getPlayerMana(action.getPlayerIdx(), player1, output);
+                    } else {
+                        Commands.DebugCommands.getPlayerMana(action.getPlayerIdx(), player2, output);
+                    }
+                    break;
+                case "getCardsOnTable":
+                    Commands.DebugCommands.getCardsOnTable(table, output);
+                    break;
             }
         return 1;
     }
