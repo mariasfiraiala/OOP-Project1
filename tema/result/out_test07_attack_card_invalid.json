@@ -22,6 +22,18 @@
   "command" : "getPlayerTurn",
   "output" : 2
 }, {
+  "command" : "placeCard",
+  "error" : "Cannot place environment card on table.",
+  "handIdx" : 0
+}, {
+  "command" : "placeCard",
+  "error" : "Cannot place environment card on table.",
+  "handIdx" : 0
+}, {
+  "command" : "placeCard",
+  "error" : "Cannot place environment card on table.",
+  "handIdx" : 0
+}, {
   "command" : "getPlayerMana",
   "playerIdx" : 2,
   "output" : 17

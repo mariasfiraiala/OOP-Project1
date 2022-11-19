@@ -1,4 +1,12 @@
 [ {
+  "command" : "placeCard",
+  "error" : "Cannot place environment card on table.",
+  "handIdx" : 0
+}, {
+  "command" : "placeCard",
+  "error" : "Cannot place environment card on table.",
+  "handIdx" : 0
+}, {
   "command" : "getPlayerMana",
   "playerIdx" : 1,
   "output" : 18

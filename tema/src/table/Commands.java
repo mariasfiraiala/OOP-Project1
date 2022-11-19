@@ -13,25 +13,41 @@ public class Commands {
         public static void placeCard(int handIdx, Player player, ArrayList<Minion>[] table, ArrayNode output) {
             ObjectNode node = JsonNodeFactory.instance.objectNode();
             node.put("command", "placeCard");
-            node.put("handIdx", handIdx);
 
             if (player.getHand().get(handIdx).getType().compareTo("Environment") == 0) {
                 String error = new String("Cannot place environment card on table.");
                 node.put("error", error);
+                node.put("handIdx", handIdx);
+                output.addPOJO(node);
             } else if (player.getHand().get(handIdx).getMana() > player.getMana()) {
                 String error = new String("Not enough mana to place card on table.");
                 node.put("error", error);
-            }else if (table[player.getIndexFrontRow() + ((Minion)player.getHand().get(handIdx)).getPosition()].size() > 5) {
-                String error = new String("Cannot place card on table since row is full.");
-                node.put("error", error);
+                node.put("handIdx", handIdx);
+                output.addPOJO(node);
             } else {
                 if (player.getIndexFrontRow() == 2) {
-                    table[player.getIndexBackRow() - ((Minion)player.getHand().get(handIdx)).getPosition()].add(((Minion)player.getHand().get(handIdx)));
+                    if (table[player.getIndexBackRow() - ((Minion) player.getHand().get(handIdx)).getPosition()].size() >= 5) {
+                        String error = new String("Cannot place card on table since row is full.");
+                        node.put("error", error);
+                        node.put("handIdx", handIdx);
+                        output.addPOJO(node);
+                    } else {
+                        table[player.getIndexBackRow() - ((Minion) player.getHand().get(handIdx)).getPosition()].add(((Minion) player.getHand().get(handIdx)));
+                        player.setMana(player.getMana() - player.getHand().get(handIdx).getMana());
+                        player.getHand().remove(handIdx);
+                    }
                 } else {
-                    table[player.getIndexBackRow() + ((Minion)player.getHand().get(handIdx)).getPosition()].add(((Minion)player.getHand().get(handIdx)));
+                    if (table[player.getIndexBackRow() + ((Minion) player.getHand().get(handIdx)).getPosition()].size() >= 5) {
+                        String error = new String("Cannot place card on table since row is full.");
+                        node.put("error", error);
+                        node.put("handIdx", handIdx);
+                        output.addPOJO(node);
+                    } else {
+                        table[player.getIndexBackRow() + ((Minion) player.getHand().get(handIdx)).getPosition()].add(((Minion) player.getHand().get(handIdx)));
+                        player.setMana(player.getMana() - player.getHand().get(handIdx).getMana());
+                        player.getHand().remove(handIdx);
+                    }
                 }
-                player.setMana(player.getMana() - player.getHand().get(handIdx).getMana());
-                player.getHand().remove(handIdx);
             }
         }
 
