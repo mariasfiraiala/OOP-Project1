@@ -63,7 +63,7 @@ public class Minion extends Card {
         String isFrontRow = new String("The Ripper, Miraj, Goliath, Warden");
 
 
-        if (this.getName().indexOf("The Ripper, Miraj, Goliath, Warden") != -1) {
+        if (isFrontRow.indexOf(card.getName()) != -1) {
             this.position = 1;
         }
         else {

@@ -21,7 +21,7 @@ public class Player {
             case "General Kocioraw" -> new GeneralKocioraw(card);
             default -> null;
         };
-        this.mana = 0;
+        this.mana = 1;
         this.indexFrontRow = indexFrontRow;
         this.indexBackRow = indexBackRow;
     }

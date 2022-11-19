@@ -47,12 +47,12 @@ public class Game {
 
     public int letThePlayersPlay(ArrayList<ActionsInput> actions, ArrayNode output) {
         int howManyPlayersFinishedTheirTurn = 0;
-        int mana = 1;
         if (player1.getCurrentDeck().getTotalCards().size() != 0 && player2.getCurrentDeck().getTotalCards().size() != 0) {
             player1.getHand().add(player1.getCurrentDeck().getTotalCards().remove(0));
             player2.getHand().add(player2.getCurrentDeck().getTotalCards().remove(0));
         }
 
+        int mana = 1;
         for (ActionsInput action : actions)
 
             switch (action.getCommand()) {

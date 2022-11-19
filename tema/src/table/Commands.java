@@ -30,6 +30,7 @@ public class Commands {
                 } else {
                     table[player.getIndexBackRow() + ((Minion)player.getHand().get(handIdx)).getPosition()].add(((Minion)player.getHand().get(handIdx)));
                 }
+                player.setMana(player.getMana() - player.getHand().get(handIdx).getMana());
                 player.getHand().remove(handIdx);
             }
         }
@@ -211,12 +212,15 @@ public class Commands {
             ObjectNode node = JsonNodeFactory.instance.objectNode();
             node.put("command", "getCardsOnTable");
 
-            ArrayList<Minion> cardsOnTable = new ArrayList<Minion>();
-            for (int i = 0; i < 4; ++i)
+            ArrayList<ArrayList<Minion>> cardsOnTable = new ArrayList<ArrayList<Minion>>(4);
+
+            for (int i = 0; i < 4; ++i) {
+                cardsOnTable.add(new ArrayList<>());
                 for (Minion minion : table[i]) {
                     Minion newMinion = new Minion(minion);
-                    cardsOnTable.add(newMinion);
+                    cardsOnTable.get(i).add(newMinion);
                 }
+            }
             node.putPOJO("output", cardsOnTable);
             output.addPOJO(node);
         }
