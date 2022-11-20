@@ -11,7 +11,9 @@ public class TheRipper extends Minion {
         super(card);
     }
 
-    private void WeakKnees (Minion minion) {
-        minion.setHealth(minion.getHealth() - 2);
+    public void WeakKnees (Minion minion) {
+        minion.setAttackDamage(minion.getAttackDamage() - 2);
+        if (minion.getAttackDamage() < 0)
+            minion.setAttackDamage(0);
     }
 }

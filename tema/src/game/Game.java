@@ -136,6 +136,9 @@ public class Game {
                 case "getFrozenCardsOnTable":
                     Commands.DebugCommands.getFrozenCardsOnTable(table, output);
                     break;
+                case "cardUsesAbility":
+                    Commands.RegularCommands.cardUsesAbility(action.getCardAttacker(), action.getCardAttacked(), players.get(howManyPlayersFinishedTheirTurn), players.get((howManyPlayersFinishedTheirTurn + 1) % 2), table, output);
+                    break;
             }
         return 1;
     }

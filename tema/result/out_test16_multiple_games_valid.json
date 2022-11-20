@@ -99,7 +99,7 @@
     "description" : "Standard card: When he is near, close your eyes. They betray your mind.",
     "colors" : [ "Yellow", "Orange", "Red" ],
     "name" : "Miraj",
-    "health" : 3,
+    "health" : 4,
     "attackDamage" : 5
   }, {
     "mana" : 2,
@@ -120,7 +120,7 @@
     "description" : "Premium card: Insanity is always an option, now it is an absolute.",
     "colors" : [ "Yellow", "Orange", "Red" ],
     "name" : "Miraj",
-    "health" : 4,
+    "health" : 3,
     "attackDamage" : 6
   } ], [ {
     "mana" : 2,
@@ -197,8 +197,8 @@
     "description" : "Standard card: He has seen everything, his mind has never been asleep since the making of the realm.",
     "colors" : [ "Brown", "Blue" ],
     "name" : "Warden",
-    "health" : 5,
-    "attackDamage" : 7
+    "health" : 7,
+    "attackDamage" : 5
   }
 }, {
   "command" : "getPlayerMana",
@@ -234,8 +234,8 @@
     "description" : "Standard card: He has seen everything, his mind has never been asleep since the making of the realm.",
     "colors" : [ "Brown", "Blue" ],
     "name" : "Warden",
-    "health" : 5,
-    "attackDamage" : 7
+    "health" : 7,
+    "attackDamage" : 5
   }
 }, {
   "command" : "getFrozenCardsOnTable",
@@ -273,8 +273,8 @@
     "description" : "Standard card: He has seen everything, his mind has never been asleep since the making of the realm.",
     "colors" : [ "Brown", "Blue" ],
     "name" : "Warden",
-    "health" : 5,
-    "attackDamage" : 7
+    "health" : 7,
+    "attackDamage" : 5
   }, {
     "mana" : 2,
     "description" : "Standard card: A warrior who is never afraid of battle, no matter the costs",

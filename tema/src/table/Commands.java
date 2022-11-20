@@ -121,6 +121,69 @@ public class Commands {
                 attacker.getHand().remove(handIdx);
             }
         }
+
+        public static void cardUsesAbility(Coordinates cardAttacker, Coordinates cardAttacked, Player attacker, Player attacked, ArrayList<Minion>[] table, ArrayNode output) {
+            ObjectNode node = JsonNodeFactory.instance.objectNode();
+            node.put("command", "cardUsesAbility");
+            node.putPOJO("cardAttacker", cardAttacker);
+            node.putPOJO("cardAttacked", cardAttacked);
+
+            if (table[cardAttacker.getX()].get(cardAttacker.getY()).getIsFrozen() == true) {
+                node.put("error", "Attacker card is frozen.");
+                output.addPOJO(node);
+                return;
+            }
+            if (table[cardAttacker.getX()].get(cardAttacker.getY()).getHasAttacked() == true) {
+                node.put("error", "Attacker card has already attacked this turn.");
+                output.addPOJO(node);
+                return;
+            }
+            if (table[cardAttacker.getX()].get(cardAttacker.getY()).getName().compareTo("Disciple") == 0 && cardAttacked.getX() != attacker.getIndexFrontRow() && cardAttacked.getX() != attacker.getIndexBackRow()) {
+                node.put("error", "Attacked card does not belong to the current player.");
+                output.addPOJO(node);
+                return;
+            }
+            if (cardAttacked.getX() == attacker.getIndexFrontRow() || cardAttacked.getX() == attacker.getIndexBackRow()) {
+                node.put("error", "Attacked card does not belong to the enemy.");
+                output.addPOJO(node);
+                return;
+            }
+            if (table[cardAttacker.getX()].get(cardAttacker.getY()).getName().compareTo("Disciple") != 0) {
+                boolean hasTank = false;
+                ArrayList<Minion> tanks = new ArrayList<Minion>();
+
+                for (Minion minion : table[attacked.getIndexFrontRow()]) {
+                    if (minion.getName().compareTo("Goliath") == 0 || minion.getName().compareTo("Warden") == 0) {
+                        hasTank = true;
+                        tanks.add(minion);
+                    }
+                }
+                for (Minion minion : table[attacked.getIndexBackRow()]) {
+                    if (minion.getName().compareTo("Goliath") == 0 || minion.getName().compareTo("Warden") == 0) {
+                        hasTank = true;
+                        tanks.add(minion);
+                    }
+                }
+
+                if (hasTank == true && tanks.contains(table[cardAttacked.getX()].get(cardAttacked.getY())) == false) {
+                    node.put("error", "Attacked card is not of type 'Tank'.");
+                    output.addPOJO(node);
+                    return;
+                }
+            }
+            if (table[cardAttacker.getX()].get(cardAttacker.getY()).getName().compareTo("The Ripper") == 0) {
+                ((TheRipper) table[cardAttacker.getX()].get(cardAttacker.getY())).WeakKnees(table[cardAttacked.getX()].get(cardAttacked.getY()));
+            } else if (table[cardAttacker.getX()].get(cardAttacker.getY()).getName().compareTo("Miraj") == 0) {
+                ((Miraj) table[cardAttacker.getX()].get(cardAttacker.getY())).SkyJack(table[cardAttacked.getX()].get(cardAttacked.getY()));
+            } else if (table[cardAttacker.getX()].get(cardAttacker.getY()).getName().compareTo("The Cursed One") == 0) {
+                ((TheCursedOne) table[cardAttacker.getX()].get(cardAttacker.getY())).Shapeshift(table[cardAttacked.getX()].get(cardAttacked.getY()));
+                if (table[cardAttacked.getX()].get(cardAttacked.getY()).getHealth() == 0) {
+                    table[cardAttacked.getX()].remove(cardAttacked.getY());
+                }
+            } else {
+                ((Disciple) table[cardAttacker.getX()].get(cardAttacker.getY())).GodsPlan(table[cardAttacked.getX()].get(cardAttacked.getY()));
+            }
+        }
     }
 
     public static class DebugCommands {

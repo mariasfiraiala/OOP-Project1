@@ -3,7 +3,7 @@ package cards;
 import fileio.CardInput;
 
 public class TheCursedOne extends Minion {
-    private void Shapeshift(Minion minion) {
+    public void Shapeshift(Minion minion) {
         int tmp;
         tmp = minion.getHealth();
         minion.setHealth(minion.getAttackDamage());
