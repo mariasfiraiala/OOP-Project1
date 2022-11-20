@@ -186,6 +186,56 @@ public class Commands {
             }
             table[cardAttacker.getX()].get(cardAttacker.getY()).setHasAttacked(true);
         }
+
+        public static int useAttackHero(Coordinates cardAttacker, Player attacker, Player attacked,  ArrayList<Minion>[] table, ArrayNode output) {
+            ObjectNode node = JsonNodeFactory.instance.objectNode();
+
+            boolean hasTank = false;
+
+            for (Minion minion : table[attacked.getIndexFrontRow()]) {
+                if (minion.getName().compareTo("Goliath") == 0 || minion.getName().compareTo("Warden") == 0) {
+                    hasTank = true;
+                }
+            }
+            for (Minion minion : table[attacked.getIndexBackRow()]) {
+                if (minion.getName().compareTo("Goliath") == 0 || minion.getName().compareTo("Warden") == 0) {
+                    hasTank = true;
+                }
+            }
+            int ret = 0;
+
+            if (table[cardAttacker.getX()].get(cardAttacker.getY()).getIsFrozen() == true) {
+                node.put("command", "useAttackHero");
+                node.putPOJO("cardAttacker", cardAttacker);
+                node.put("error", "Attacker card is frozen.");
+                output.addPOJO(node);
+            } else if (table[cardAttacker.getX()].get(cardAttacker.getY()).getHasAttacked() == true) {
+                node.put("command", "useAttackHero");
+                node.putPOJO("cardAttacker", cardAttacker);
+                node.put("error", "Attacker card has already attacked this turn.");
+                output.addPOJO(node);
+            } else if (hasTank == true) {
+                node.put("command", "useAttackHero");
+                node.putPOJO("cardAttacker", cardAttacker);
+                node.put("error", "Attacked card is not of type 'Tank'.");
+                output.addPOJO(node);
+            } else {
+                attacked.getHero().setHealth(attacked.getHero().getHealth() - table[cardAttacker.getX()].get(cardAttacker.getY()).getAttackDamage());
+                table[cardAttacker.getX()].get(cardAttacker.getY()).setHasAttacked(true);
+
+                if (attacked.getHero().getHealth() <= 0) {
+                    if (attacker.getIndexFrontRow() == 2) {
+                        node.put("gameEnded", "Player one killed the enemy hero.");
+                        ret = 1;
+                    } else {
+                        node.put("gameEnded", "Player two killed the enemy hero.");
+                        ret = 2;
+                    }
+                    output.addPOJO(node);
+                }
+            }
+            return ret;
+        }
     }
 
     public static class DebugCommands {
