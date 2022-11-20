@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public abstract class Hero extends Card {
     private int health;
     @JsonIgnore
-    private int hasAttacked;
+    private boolean hasAttacked;
 
     public Hero(CardInput card) {
         super(card);
@@ -19,7 +19,7 @@ public abstract class Hero extends Card {
         super(card);
         this.health = card.health;
     }
-    public abstract void heroAction(ArrayList<Card> cards);
+    public abstract void heroAction(ArrayList<Minion> cards);
 
     public int getHealth() {
         return health;
@@ -29,10 +29,10 @@ public abstract class Hero extends Card {
         this.health = health;
     }
 
-    public int getHasAttacked() {
+    public boolean getHasAttacked() {
         return hasAttacked;
     }
-    public void setHasAttacked(int hasAttacked) {
+    public void setHasAttacked(boolean hasAttacked) {
         this.hasAttacked = hasAttacked;
     }
 }

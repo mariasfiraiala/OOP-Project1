@@ -63,6 +63,7 @@ public class Game {
                         // before getting to the next turn, defrost frozen cards
                         players.get(howManyPlayersFinishedTheirTurn).defrost(table[players.get(howManyPlayersFinishedTheirTurn).getIndexFrontRow()], table[players.get(howManyPlayersFinishedTheirTurn).getIndexBackRow()]);
                         players.get(howManyPlayersFinishedTheirTurn).refreshAttackers(table[players.get(howManyPlayersFinishedTheirTurn).getIndexFrontRow()], table[players.get(howManyPlayersFinishedTheirTurn).getIndexBackRow()]);
+                        players.get(howManyPlayersFinishedTheirTurn).getHero().setHasAttacked(false);
                         ++howManyPlayersFinishedTheirTurn;
 
                         // end of a round, prepare new one
@@ -104,6 +105,11 @@ public class Game {
                 case "useAttackHero":
                     if (whoWon == 0) {
                         whoWon = Commands.RegularCommands.useAttackHero(action.getCardAttacker(), players.get(howManyPlayersFinishedTheirTurn), players.get((howManyPlayersFinishedTheirTurn + 1) % 2), table, output);
+                    }
+                    break;
+                case "useHeroAbility":
+                    if (whoWon == 0) {
+                        Commands.RegularCommands.useHeroAbility(action.getAffectedRow(), players.get(howManyPlayersFinishedTheirTurn), players.get((howManyPlayersFinishedTheirTurn + 1) % 2), table, output);
                     }
                     break;
 

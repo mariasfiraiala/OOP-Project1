@@ -74,7 +74,7 @@
     "description" : "Standard card: A drink can always be served, with the blood of his enemies.",
     "colors" : [ "Red", "Blue", "Pink" ],
     "name" : "Berserker",
-    "health" : 1,
+    "health" : 2,
     "attackDamage" : 5
   }
 }, {
@@ -82,7 +82,7 @@
 }, {
   "command" : "getPlayerMana",
   "playerIdx" : 2,
-  "output" : 4
+  "output" : 2
 }, {
   "command" : "getPlayerMana",
   "playerIdx" : 1,
@@ -94,7 +94,7 @@
     "description" : "Standard card: A drink can always be served, with the blood of his enemies.",
     "colors" : [ "Red", "Blue", "Pink" ],
     "name" : "Berserker",
-    "health" : 1,
+    "health" : 2,
     "attackDamage" : 5
   } ], [ {
     "mana" : 2,

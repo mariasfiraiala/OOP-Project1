@@ -236,6 +236,36 @@ public class Commands {
             }
             return ret;
         }
+
+        public static void useHeroAbility(int affectedRow, Player attacker, Player attacked, ArrayList<Minion>[] table, ArrayNode output) {
+            ObjectNode node = JsonNodeFactory.instance.objectNode();
+
+            if (attacker.getMana() < attacker.getHero().getMana()) {
+                node.put("command", "useHeroAbility");
+                node.put("affectedRow", affectedRow);
+                node.put("error", "Not enough mana to use hero's ability.");
+                output.addPOJO(node);
+            } else if (attacker.getHero().getHasAttacked() == true) {
+                node.put("command", "useHeroAbility");
+                node.put("affectedRow", affectedRow);
+                node.put("error", "Hero has already attacked this turn.");
+                output.addPOJO(node);
+            } else if ((attacker.getHero().getName().compareTo("Lord Royce") == 0 || attacker.getHero().getName().compareTo("Empress Thorina") == 0) && (affectedRow != attacked.getIndexFrontRow() && affectedRow != attacked.getIndexBackRow())) {
+                node.put("command", "useHeroAbility");
+                node.put("affectedRow", affectedRow);
+                node.put("error", "Selected row does not belong to the enemy.");
+                output.addPOJO(node);
+            } else if ((attacker.getHero().getName().compareTo("General Kocioraw") == 0 || attacker.getHero().getName().compareTo("King Mudface") == 0) && (affectedRow != attacker.getIndexFrontRow() && affectedRow != attacker.getIndexBackRow())) {
+                node.put("command", "useHeroAbility");
+                node.put("affectedRow", affectedRow);
+                node.put("error", "Selected row does not belong to the current player.");
+                output.addPOJO(node);
+            } else {
+                ((Hero) attacker.getHero()).heroAction(table[affectedRow]);
+                attacker.setMana(attacker.getMana() - attacker.getHero().getMana());
+                attacker.getHero().setHasAttacked(true);
+            }
+        }
     }
 
     public static class DebugCommands {
