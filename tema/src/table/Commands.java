@@ -313,5 +313,27 @@ public class Commands {
             }
             output.addPOJO(node);
         }
+
+        public static void getFrozenCardsOnTable(ArrayList<Minion>[] table, ArrayNode output) {
+            ObjectNode node = JsonNodeFactory.instance.objectNode();
+            node.put("command", "getFrozenCardsOnTable");
+
+            ArrayList<ArrayList<Minion>> frozenCardsOnTable = new ArrayList<ArrayList<Minion>>();
+            boolean ok;
+
+            for (int i = 0; i < 4; ++i) {
+                ok = false;
+                for (Minion minion : table[i]) {
+                    if (minion.getIsFrozen() == true) {
+                        frozenCardsOnTable.add(new ArrayList<>());
+                        Minion newMinion = new Minion(minion);
+                        frozenCardsOnTable.get(i).add(newMinion);
+                        ok = true;
+                    }
+                }
+            }
+            node.putPOJO("output", frozenCardsOnTable);
+            output.addPOJO(node);
+        }
     }
 }

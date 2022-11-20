@@ -97,13 +97,6 @@
     "name" : "Sentinel",
     "health" : 2,
     "attackDamage" : 1
-  }, {
-    "mana" : 1,
-    "description" : "Premium card: Fear him. Your last breath is now.",
-    "colors" : [ "Red", "Blue", "Pink" ],
-    "name" : "Berserker",
-    "health" : 1,
-    "attackDamage" : 2
   } ] ]
 }, {
   "command" : "getCardsInHand",

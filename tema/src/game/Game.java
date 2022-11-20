@@ -134,6 +134,9 @@ public class Game {
                 case "getCardAtPosition":
                     Commands.DebugCommands.getCardAtPosition(action.getX(), action.getY(), table, output);
                     break;
+                case "getFrozenCardsOnTable":
+                    Commands.DebugCommands.getFrozenCardsOnTable(table, output);
+                    break;
             }
         return 1;
     }
