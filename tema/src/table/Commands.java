@@ -15,20 +15,17 @@ public class Commands {
             node.put("command", "placeCard");
 
             if (player.getHand().get(handIdx).getType().compareTo("Environment") == 0) {
-                String error = new String("Cannot place environment card on table.");
-                node.put("error", error);
+                node.put("error", "Cannot place environment card on table.");
                 node.put("handIdx", handIdx);
                 output.addPOJO(node);
             } else if (player.getHand().get(handIdx).getMana() > player.getMana()) {
-                String error = new String("Not enough mana to place card on table.");
-                node.put("error", error);
+                node.put("error", "Not enough mana to place card on table.");
                 node.put("handIdx", handIdx);
                 output.addPOJO(node);
             } else {
                 if (player.getIndexFrontRow() == 2) {
                     if (table[player.getIndexBackRow() - ((Minion) player.getHand().get(handIdx)).getPosition()].size() >= 5) {
-                        String error = new String("Cannot place card on table since row is full.");
-                        node.put("error", error);
+                        node.put("error", "Cannot place card on table since row is full.");
                         node.put("handIdx", handIdx);
                         output.addPOJO(node);
                     } else {
@@ -38,8 +35,7 @@ public class Commands {
                     }
                 } else {
                     if (table[player.getIndexBackRow() + ((Minion) player.getHand().get(handIdx)).getPosition()].size() >= 5) {
-                        String error = new String("Cannot place card on table since row is full.");
-                        node.put("error", error);
+                        node.put("error", "Cannot place card on table since row is full.");
                         node.put("handIdx", handIdx);
                         output.addPOJO(node);
                     } else {
@@ -51,7 +47,12 @@ public class Commands {
             }
         }
 
-        public static void applyCardUsesAttack(Coordinates cardAttacker, Coordinates cardAttacked, Player attacker, Player attacked, ArrayList<Minion>[] table) {
+        public static void cardUsesAttack(Coordinates cardAttacker, Coordinates cardAttacked, Player attacker, Player attacked, ArrayList<Minion>[] table, ArrayNode output) {
+            ObjectNode node = JsonNodeFactory.instance.objectNode();
+            node.put("command", "cardUsesAttack");
+            node.putPOJO("cardAttacker", cardAttacker);
+            node.putPOJO("cardAttacked", cardAttacked);
+
             boolean hasTank = false;
             ArrayList<Minion> tanks = new ArrayList<Minion>();
 
@@ -69,13 +70,17 @@ public class Commands {
             }
 
             if (cardAttacked.getX() == attacker.getIndexFrontRow() || cardAttacked.getX() == attacker.getIndexBackRow()) {
-                System.out.println("Attacked card does not belong to the enemy.");
+                node.put("error", "Attacked card does not belong to the enemy.");
+                output.addPOJO(node);
             } else if (table[cardAttacker.getX()].get(cardAttacker.getY()).getHasAttacked() == true) {
-                System.out.println("Attacker card has already attacked this turn.");
+                node.put("error", "Attacker card has already attacked this turn.");
+                output.addPOJO(node);
             } else if (table[cardAttacker.getX()].get(cardAttacker.getY()).getIsFrozen() == true) {
-                System.out.println("Attacker card is frozen.");
+                node.put("error", "Attacker card is frozen.");
+                output.addPOJO(node);
             } else if (hasTank == true && tanks.contains(table[cardAttacked.getX()].get(cardAttacked.getY())) == false) {
-                System.out.println("Attacked card is not of type 'Tank’");
+                node.put("error", "Attacked card is not of type 'Tank'.");
+                output.addPOJO(node);
             } else {
                 table[cardAttacker.getX()].get(cardAttacker.getY()).setHasAttacked(true);
                 table[cardAttacked.getX()].get(cardAttacked.getY()).setHealth(table[cardAttacked.getX()].get(cardAttacked.getY()).getHealth() - table[cardAttacker.getX()].get(cardAttacker.getY()).getAttackDamage());

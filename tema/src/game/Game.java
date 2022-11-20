@@ -81,10 +81,9 @@ public class Game {
                 case "placeCard":
                     Commands.RegularCommands.placeCard(action.getHandIdx(), players.get(howManyPlayersFinishedTheirTurn), table, output);
                     break;
-//                case "cardUsesAttack":
-//                    Commands.RegularCommands cardUsesAttack = new Commands.RegularCommands();
-//                    cardUsesAttack.applyCardUsesAttack(action.getCardAttacker(), action.getCardAttacked(), players.get(howManyPlayersFinishedTheirTurn), players.get((howManyPlayersFinishedTheirTurn + 1) % 2), table);
-//                    break;
+                case "cardUsesAttack":
+                    Commands.RegularCommands.cardUsesAttack(action.getCardAttacker(), action.getCardAttacked(), players.get(howManyPlayersFinishedTheirTurn), players.get((howManyPlayersFinishedTheirTurn + 1) % 2), table, output);
+                    break;
 
                 // debug commands
                 case "getPlayerDeck":

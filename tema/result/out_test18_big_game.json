@@ -131,7 +131,7 @@
     "description" : "Premium card: Fear him. Your last breath is now.",
     "colors" : [ "Purple", "Yellow" ],
     "name" : "Berserker",
-    "health" : 2,
+    "health" : 1,
     "attackDamage" : 2
   }
 }, {
@@ -179,7 +179,7 @@
     "description" : "Premium card: Fear him. Your last breath is now.",
     "colors" : [ "Purple", "Yellow" ],
     "name" : "Berserker",
-    "health" : 2,
+    "health" : 1,
     "attackDamage" : 2
   }
 }, {
@@ -199,15 +199,8 @@
     "description" : "Premium card: Fear him. Your last breath is now.",
     "colors" : [ "Purple", "Yellow" ],
     "name" : "Berserker",
-    "health" : 2,
+    "health" : 1,
     "attackDamage" : 2
-  }, {
-    "mana" : 3,
-    "description" : "Premium card: The will of Gods has been spoken, obey and you shall be saved...or not.",
-    "colors" : [ "Green", "Yellow", "Blue" ],
-    "name" : "Disciple",
-    "health" : 2,
-    "attackDamage" : 0
   } ], [ {
     "mana" : 4,
     "description" : "Premium card: Ravished by the winds of hell, no soul is to be forgiven.",
@@ -241,7 +234,7 @@
     "description" : "Premium card: No matter how many, his body will fight. Save your breath for the Mountain is strong.",
     "colors" : [ "Brown", "Black", "Grey" ],
     "name" : "Goliath",
-    "health" : 7,
+    "health" : 2,
     "attackDamage" : 1
   }, {
     "mana" : 5,
