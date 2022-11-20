@@ -137,13 +137,13 @@
   } ]
 }, {
   "command" : "getTotalGamesPlayed",
-  "output" : 2
+  "output" : 1
 }, {
   "command" : "getPlayerTwoWins",
   "output" : 1
 }, {
   "command" : "getPlayerOneWins",
-  "output" : 2
+  "output" : 0
 }, {
   "command" : "getPlayerTurn",
   "output" : 2
@@ -356,8 +356,8 @@
   "output" : 2
 }, {
   "command" : "getPlayerTwoWins",
-  "output" : 2
+  "output" : 1
 }, {
   "command" : "getPlayerOneWins",
-  "output" : 2
+  "output" : 1
 } ]

@@ -138,12 +138,12 @@ public class Commands {
                 output.addPOJO(node);
                 return;
             }
-            if (table[cardAttacker.getX()].get(cardAttacker.getY()).getName().compareTo("Disciple") == 0 && cardAttacked.getX() != attacker.getIndexFrontRow() && cardAttacked.getX() != attacker.getIndexBackRow()) {
+            if (table[cardAttacker.getX()].get(cardAttacker.getY()).getName().compareTo("Disciple") == 0 && (cardAttacked.getX() != attacker.getIndexFrontRow() && cardAttacked.getX() != attacker.getIndexBackRow())) {
                 node.put("error", "Attacked card does not belong to the current player.");
                 output.addPOJO(node);
                 return;
             }
-            if (table[cardAttacker.getX()].get(cardAttacker.getY()).getName().compareTo("Disciple") != 0 && cardAttacked.getX() == attacker.getIndexFrontRow() || cardAttacked.getX() == attacker.getIndexBackRow()) {
+            if (table[cardAttacker.getX()].get(cardAttacker.getY()).getName().compareTo("Disciple") != 0 && (cardAttacked.getX() == attacker.getIndexFrontRow() || cardAttacked.getX() == attacker.getIndexBackRow())) {
                 node.put("error", "Attacked card does not belong to the enemy.");
                 //node.put("Name", table[cardAttacker.getX()].get(cardAttacker.getY()).getName());
                 output.addPOJO(node);

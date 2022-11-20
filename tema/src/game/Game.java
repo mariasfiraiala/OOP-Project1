@@ -105,6 +105,13 @@ public class Game {
                     if (whoWon == 0) {
                         whoWon = Commands.RegularCommands.useAttackHero(action.getCardAttacker(), players.get(howManyPlayersFinishedTheirTurn), players.get((howManyPlayersFinishedTheirTurn + 1) % 2), table, output);
                     }
+                    if (whoWon == 1) {
+                        Statistics.getInstance().setNumberWinsPlayer1(Statistics.getInstance().getNumberWinsPlayer1() + 1);
+                    }
+                    if (whoWon == 2) {
+                        Statistics.getInstance().setNumberWinsPlayer2(Statistics.getInstance().getNumberWinsPlayer2() + 1);
+                    }
+                    Statistics.getInstance().setNumberOfGames(Statistics.getInstance().getNumberWinsPlayer1() + Statistics.getInstance().getNumberWinsPlayer2());
                     break;
                 case "useHeroAbility":
                     if (whoWon == 0) {
@@ -160,15 +167,15 @@ public class Game {
                     Commands.DebugCommands.getFrozenCardsOnTable(table, output);
                     break;
                 case "getPlayerOneWins":
-                    Commands.DebugCommands.getPlayerOneWins(Statistics.getNumberWinsPlayer1(), output);
+                    Commands.DebugCommands.getPlayerOneWins(Statistics.getInstance().getNumberWinsPlayer1(), output);
                     break;
                 case "getPlayerTwoWins":
-                    Commands.DebugCommands.getPlayerTwoWins(Statistics.getNumberWinsPlayer2(), output);
+                    Commands.DebugCommands.getPlayerTwoWins(Statistics.getInstance().getNumberWinsPlayer2(), output);
                     break;
                 case "getTotalGamesPlayed":
-                    Commands.DebugCommands.getTotalGamesPlayed(Statistics.getNumberOfGames(), output);
+                    Commands.DebugCommands.getTotalGamesPlayed(Statistics.getInstance().getNumberOfGames(), output);
                     break;
-
+                default:
             }
         }
         return whoWon;

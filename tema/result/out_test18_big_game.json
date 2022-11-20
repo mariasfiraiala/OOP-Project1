@@ -104,17 +104,6 @@
   "playerIdx" : 2,
   "output" : [ ]
 }, {
-  "command" : "cardUsesAbility",
-  "cardAttacker" : {
-    "x" : 0,
-    "y" : 1
-  },
-  "cardAttacked" : {
-    "x" : 0,
-    "y" : 0
-  },
-  "error" : "Attacked card does not belong to the enemy."
-}, {
   "command" : "getPlayerMana",
   "playerIdx" : 1,
   "output" : 3
@@ -142,7 +131,7 @@
     "description" : "Premium card: Fear him. Your last breath is now.",
     "colors" : [ "Purple", "Yellow" ],
     "name" : "Berserker",
-    "health" : 3,
+    "health" : 5,
     "attackDamage" : 2
   }
 }, {
@@ -197,7 +186,7 @@
     "description" : "Premium card: Fear him. Your last breath is now.",
     "colors" : [ "Purple", "Yellow" ],
     "name" : "Berserker",
-    "health" : 3,
+    "health" : 5,
     "attackDamage" : 2
   }
 }, {
@@ -219,7 +208,7 @@
     "description" : "Premium card: Fear him. Your last breath is now.",
     "colors" : [ "Purple", "Yellow" ],
     "name" : "Berserker",
-    "health" : 3,
+    "health" : 5,
     "attackDamage" : 3
   } ], [ {
     "mana" : 4,
@@ -315,8 +304,8 @@
   "output" : 1
 }, {
   "command" : "getPlayerTwoWins",
-  "output" : 2
+  "output" : 0
 }, {
   "command" : "getPlayerOneWins",
-  "output" : 3
+  "output" : 1
 } ]

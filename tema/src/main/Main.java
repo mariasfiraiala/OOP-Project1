@@ -73,7 +73,6 @@ public final class Main {
 
         ArrayNode output = objectMapper.createArrayNode();
 
-        //TODO add here the entry point to your implementation
         PrepareGame gamers = new PrepareGame(inputData, output);
 
         ObjectWriter objectWriter = objectMapper.writerWithDefaultPrettyPrinter();
