@@ -143,8 +143,9 @@ public class Commands {
                 output.addPOJO(node);
                 return;
             }
-            if (cardAttacked.getX() == attacker.getIndexFrontRow() || cardAttacked.getX() == attacker.getIndexBackRow()) {
+            if (table[cardAttacker.getX()].get(cardAttacker.getY()).getName().compareTo("Disciple") != 0 && cardAttacked.getX() == attacker.getIndexFrontRow() || cardAttacked.getX() == attacker.getIndexBackRow()) {
                 node.put("error", "Attacked card does not belong to the enemy.");
+                //node.put("Name", table[cardAttacker.getX()].get(cardAttacker.getY()).getName());
                 output.addPOJO(node);
                 return;
             }
@@ -183,6 +184,7 @@ public class Commands {
             } else {
                 ((Disciple) table[cardAttacker.getX()].get(cardAttacker.getY())).GodsPlan(table[cardAttacked.getX()].get(cardAttacked.getY()));
             }
+            table[cardAttacker.getX()].get(cardAttacker.getY()).setHasAttacked(true);
         }
     }
 
