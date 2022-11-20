@@ -9,15 +9,18 @@ public class PrepareGame {
     private int numberWinsPlayer2;
 
     public PrepareGame(Input input, ArrayNode output) {
-        numberWinsPlayer1 = numberWinsPlayer2 = 0;
+        Statistics.setNumberOfGames(input.getGames().size());
 
         for (GameInput game : input.getGames()) {
             Game newGame = new Game(game, input.getPlayerOneDecks(), input.getPlayerTwoDecks());
             newGame.shuffle();
-            if (newGame.letThePlayersPlay(input.getGames().get(input.getGames().indexOf(game)).getActions(), output) == 1)
-                ++numberWinsPlayer1;
-            else
-                ++numberWinsPlayer2;
+            int whoWon = newGame.letThePlayersPlay(input.getGames().get(input.getGames().indexOf(game)).getActions(), output);
+
+            if (whoWon == 1) {
+                Statistics.setNumberWinsPlayer1(Statistics.getNumberWinsPlayer1() + 1);
+            } if (whoWon == 2){
+                Statistics.setNumberWinsPlayer2(Statistics.getNumberWinsPlayer2() + 1);
+            }
         }
     }
 }

@@ -136,6 +136,15 @@
     "attackDamage" : 0
   } ]
 }, {
+  "command" : "getTotalGamesPlayed",
+  "output" : 2
+}, {
+  "command" : "getPlayerTwoWins",
+  "output" : 1
+}, {
+  "command" : "getPlayerOneWins",
+  "output" : 2
+}, {
   "command" : "getPlayerTurn",
   "output" : 2
 }, {
@@ -342,4 +351,13 @@
     "colors" : [ "Green", "Black" ],
     "name" : "Heart Hound"
   } ]
+}, {
+  "command" : "getTotalGamesPlayed",
+  "output" : 2
+}, {
+  "command" : "getPlayerTwoWins",
+  "output" : 2
+}, {
+  "command" : "getPlayerOneWins",
+  "output" : 2
 } ]

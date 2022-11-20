@@ -485,5 +485,26 @@ public class Commands {
             node.putPOJO("output", frozenCardsOnTable);
             output.addPOJO(node);
         }
+
+        public static void getPlayerOneWins(int playerOneWins, ArrayNode output) {
+            ObjectNode node = JsonNodeFactory.instance.objectNode();
+            node.put("command", "getPlayerOneWins");
+            node.put("output", playerOneWins);
+            output.addPOJO(node);
+        }
+
+        public static void getPlayerTwoWins(int playerTwoWins, ArrayNode output) {
+            ObjectNode node = JsonNodeFactory.instance.objectNode();
+            node.put("command", "getPlayerTwoWins");
+            node.put("output", playerTwoWins);
+            output.addPOJO(node);
+        }
+
+        public static void getTotalGamesPlayed(int totalGamesPlayed, ArrayNode output){
+            ObjectNode node = JsonNodeFactory.instance.objectNode();
+            node.put("command", "getTotalGamesPlayed");
+            node.put("output", totalGamesPlayed);
+            output.addPOJO(node);
+        }
     }
 }

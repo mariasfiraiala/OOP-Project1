@@ -54,8 +54,7 @@ public class Game {
 
         int mana = 1;
         int whoWon = 0;
-        for (ActionsInput action : actions)
-
+        for (ActionsInput action : actions) {
             switch (action.getCommand()) {
                 // active commands
                 case "endPlayerTurn":
@@ -160,7 +159,18 @@ public class Game {
                 case "getFrozenCardsOnTable":
                     Commands.DebugCommands.getFrozenCardsOnTable(table, output);
                     break;
+                case "getPlayerOneWins":
+                    Commands.DebugCommands.getPlayerOneWins(Statistics.getNumberWinsPlayer1(), output);
+                    break;
+                case "getPlayerTwoWins":
+                    Commands.DebugCommands.getPlayerTwoWins(Statistics.getNumberWinsPlayer2(), output);
+                    break;
+                case "getTotalGamesPlayed":
+                    Commands.DebugCommands.getTotalGamesPlayed(Statistics.getNumberOfGames(), output);
+                    break;
+
             }
+        }
         return whoWon;
     }
 }
