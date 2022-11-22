@@ -4,17 +4,18 @@ import fileio.CardInput;
 
 import java.util.ArrayList;
 
-public class GeneralKocioraw extends Hero {
-    public void heroAction(ArrayList<Minion> cards) {
-        for (Minion card : cards)
+public final class GeneralKocioraw extends Hero {
+    public void heroAction(final ArrayList<Minion> cards) {
+        for (Minion card : cards) {
             card.setAttackDamage(card.getAttackDamage() + 1);
+        }
     }
 
-    public GeneralKocioraw(CardInput card) {
+    public GeneralKocioraw(final CardInput card) {
         super(card);
     }
 
-    public GeneralKocioraw(GeneralKocioraw card) {
+    public GeneralKocioraw(final GeneralKocioraw card) {
         super(card);
     }
 }

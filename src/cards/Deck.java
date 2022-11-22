@@ -4,7 +4,7 @@ import fileio.CardInput;
 
 import java.util.ArrayList;
 
-public class Deck {
+public final class Deck {
     private ArrayList<Card> totalCards;
     private int noCardsInDeck;
 
@@ -12,28 +12,13 @@ public class Deck {
         return totalCards;
     }
 
-    public int getNoCardsInDeck() {
-        return noCardsInDeck;
-    }
-
-    public void setTotalCards(ArrayList<Card> totalCards) {
-        this.totalCards = totalCards;
-    }
-
-    public void setNoCardsInDeck(int noCardsInDeck) {
-        this.noCardsInDeck = noCardsInDeck;
-    }
-
-    public void shuffleDeck(Deck deck, int seed) {
-
-    }
-
-    public Deck(ArrayList<CardInput> cards) {
-        this.noCardsInDeck= cards.size();
+    public Deck(final ArrayList<CardInput> cards) {
+        this.noCardsInDeck = cards.size();
         this.totalCards = new ArrayList<>(noCardsInDeck);
 
         for (CardInput card : cards) {
-            String isMinion = new String("Sentinel, Berserker, Goliath, Warden, The Ripper, Miraj, The Cursed One, Disciple");
+            String isMinion = new String("Sentinel, Berserker, Goliath, Warden, The Ripper,"
+                    + "Miraj, The Cursed One, Disciple");
             String isSpecialMinion = new String("Miraj, The Ripper, Disciple, The Cursed One");
 
             if (isMinion.indexOf(card.getName()) != -1) {

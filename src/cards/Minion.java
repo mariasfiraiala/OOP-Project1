@@ -13,47 +13,43 @@ public class Minion extends Card {
     @JsonIgnore
     private boolean hasAttacked;
 
-    public int getHealth() {
+    public final int getHealth() {
         return health;
     }
 
-    public int getAttackDamage() {
+    public final int getAttackDamage() {
         return attackDamage;
     }
 
-    public boolean getIsFrozen() {
+    public final boolean getIsFrozen() {
         return isFrozen;
     }
 
-    public int getPosition() {
+    public final int getPosition() {
         return position;
     }
 
-    public boolean getHasAttacked() {
+    public final boolean getHasAttacked() {
         return hasAttacked;
     }
 
-    public void setHealth(int health) {
+    public final void setHealth(final int health) {
         this.health = health;
     }
 
-    public void setAttackDamage(int attackDamage) {
+    public final void setAttackDamage(final int attackDamage) {
         this.attackDamage = attackDamage;
     }
 
-    public void setIsFrozen(boolean frozen) {
+    public final void setIsFrozen(final boolean frozen) {
         this.isFrozen = frozen;
     }
 
-    public void setPosition(int position) {
-        this.position = position;
-    }
-
-    public void setHasAttacked(boolean hasAttacked) {
+    public final void setHasAttacked(final boolean hasAttacked) {
         this.hasAttacked = hasAttacked;
     }
 
-    public Minion(CardInput card) {
+    public Minion(final CardInput card) {
         super(card);
         this.health = card.getHealth();
         this.attackDamage = card.getAttackDamage();
@@ -65,13 +61,12 @@ public class Minion extends Card {
 
         if (isFrontRow.indexOf(card.getName()) != -1) {
             this.position = 1;
-        }
-        else {
+        } else {
             this.position = 0;
         }
     }
 
-    public Minion(Minion card) {
+    public Minion(final Minion card) {
         super(card);
         this.health = card.getHealth();
         this.attackDamage = card.getAttackDamage();

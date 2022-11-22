@@ -2,16 +2,16 @@ package cards;
 
 import fileio.CardInput;
 
-public class Disciple extends Minion {
-    public void GodsPlan(Minion minion) {
+public final class Disciple extends Minion {
+    public void godsPlan(final Minion minion) {
         minion.setHealth(minion.getHealth() + 2);
     }
 
-    public Disciple(CardInput card) {
+    public Disciple(final CardInput card) {
         super(card);
     }
 
-    public Disciple(Disciple card) {
+    public Disciple(final Disciple card) {
         super(card);
     }
 }

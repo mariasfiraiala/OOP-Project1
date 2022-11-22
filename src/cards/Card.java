@@ -13,83 +13,85 @@ public class Card {
     @JsonIgnore
     private String type;
 
-    public int getMana() {
+    public final int getMana() {
         return mana;
     }
 
-    public String getDescription() {
+    public final String getDescription() {
         return description;
     }
 
-    public ArrayList<String> getColors() {
+    public final ArrayList<String> getColors() {
         return colors;
     }
 
-    public String getName() {
+    public final String getName() {
         return name;
     }
 
-    public String getType() {
+    public final String getType() {
         return type;
     }
 
-    public void setMana(int mana) {
+    public final void setMana(final int mana) {
         this.mana = mana;
     }
 
-    public void setDescription(String description) {
+    public final void setDescription(final String description) {
         this.description = description;
     }
 
-    public void setColors(ArrayList<String> colors) {
+    public final void setColors(final ArrayList<String> colors) {
         this.colors = colors;
     }
 
-    public void setName(String name) {
+    public final void setName(final String name) {
         this.name = name;
     }
 
-    public void setType(String type) {
+    public final void setType(final String type) {
         this.type = type;
     }
 
-    public Card(CardInput card) {
+    public Card(final CardInput card) {
         this.mana = card.getMana();
         this.description = new String(card.getDescription());
         this.colors = new ArrayList<String>(card.getColors());
         this.name = new String(card.getName());
 
-        String isMinion = new String("Sentinel, Berserker, Goliath, Warden, The Ripper, Miraj, The Cursed One, Disciple");
+        String isMinion = new String("Sentinel, Berserker, Goliath, Warden, The Ripper, Miraj,"
+                + "The Cursed One, Disciple");
         String isEnvironment = new String("Firestorm, Winterfell, Heart Hound");
 
         if (isMinion.indexOf(card.getName()) != -1) {
             this.type =  new String("Minion");
-        } else if(isEnvironment.indexOf(card.getName()) != -1) {
+        } else if (isEnvironment.indexOf(card.getName()) != -1) {
             this.type = new String("Environment");
         } else {
             this.type = new String("Hero");
         }
     }
 
-    public Card(Card card) {
+    public Card(final Card card) {
         this.mana = card.getMana();
         this.description = new String(card.getDescription());
         this.colors = new ArrayList<String>(card.getColors());
         this.name = new String(card.getName());
 
-        String isMinion = new String("Sentinel, Berserker, Goliath, Warden, The Ripper, Miraj, The Cursed One, Disciple");
+        String isMinion = new String("Sentinel, Berserker, Goliath, Warden, The Ripper, Miraj,"
+                + "The Cursed One, Disciple");
         String isEnvironment = new String("Firestorm, Winterfell, Heart Hound");
 
         if (isMinion.indexOf(card.getName()) != -1) {
             this.type =  new String("Minion");
-        } else if(isEnvironment.indexOf(card.getName()) != -1) {
+        } else if (isEnvironment.indexOf(card.getName()) != -1) {
             this.type = new String("Environment");
         } else {
             this.type = new String("Hero");
         }
     }
 
-    public String toString() {
+    public final String toString() {
         return "CardInput{"
                 +  "mana="
                 + mana

@@ -2,18 +2,18 @@ package cards;
 
 import fileio.CardInput;
 
-public class Miraj extends Minion {
-    public void SkyJack(Minion minion) {
+public final class Miraj extends Minion {
+    public void skyJack(final Minion minion) {
         int tmp = this.getHealth();
         this.setHealth(minion.getHealth());
         minion.setHealth(tmp);
     }
 
-    public Miraj(CardInput card) {
+    public Miraj(final CardInput card) {
         super(card);
     }
 
-    public Miraj(Miraj card) {
+    public Miraj(final Miraj card) {
         super(card);
     }
 }

@@ -1,11 +1,11 @@
 package game;
 
-public class Statistics {
+public final class Statistics {
     private int numberWinsPlayer1 = 0,  numberWinsPlayer2 = 0;
     private int numberOfGames = 0;
 
     private static Statistics instance = null;
-    private Statistics(){}
+    private Statistics() { }
 
     public static Statistics getInstance() {
         if (instance == null) {
@@ -26,19 +26,21 @@ public class Statistics {
         return numberOfGames;
     }
 
-    public void setNumberWinsPlayer1(int numberWinsPlayer1) {
+    public void setNumberWinsPlayer1(final int numberWinsPlayer1) {
         this.numberWinsPlayer1 = numberWinsPlayer1;
     }
 
-    public void setNumberWinsPlayer2(int numberWinsPlayer2) {
+    public void setNumberWinsPlayer2(final int numberWinsPlayer2) {
         this.numberWinsPlayer2 = numberWinsPlayer2;
     }
 
-    public void setNumberOfGames(int numberOfGames) {
+    public void setNumberOfGames(final int numberOfGames) {
         this.numberOfGames = numberOfGames;
     }
 
     public void reset() {
-        numberOfGames = numberWinsPlayer1 = numberWinsPlayer2 = 0;
+        numberOfGames = 0;
+        numberWinsPlayer1 = 0;
+        numberWinsPlayer2 = 0;
     }
 }

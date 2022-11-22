@@ -2,18 +2,19 @@ package cards;
 
 import fileio.CardInput;
 
-public class TheRipper extends Minion {
-    public TheRipper(CardInput card) {
+public final class TheRipper extends Minion {
+    public TheRipper(final CardInput card) {
         super(card);
     }
 
-    public TheRipper(TheRipper card) {
+    public TheRipper(final TheRipper card) {
         super(card);
     }
 
-    public void WeakKnees (Minion minion) {
+    public void weakKnees(final Minion minion) {
         minion.setAttackDamage(minion.getAttackDamage() - 2);
-        if (minion.getAttackDamage() < 0)
+        if (minion.getAttackDamage() < 0) {
             minion.setAttackDamage(0);
+        }
     }
 }

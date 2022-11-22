@@ -1,18 +1,26 @@
 package table;
 
-import cards.*;
+import cards.Card;
+import cards.Deck;
+import cards.EmpressThorina;
+import cards.GeneralKocioraw;
+import cards.Hero;
+import cards.KingMudface;
+import cards.LordRoyce;
+import cards.Minion;
 import fileio.CardInput;
 
 import java.util.ArrayList;
 
-public class Player {
+public final class Player {
     private Deck currentDeck;
     private Hero hero;
     private ArrayList<Card> hand = new ArrayList<Card>();
     private int mana;
     private int indexFrontRow, indexBackRow;
 
-    public Player(Deck deck, CardInput card, int indexFrontRow, int indexBackRow) {
+    public Player(final Deck deck, final CardInput card, final int indexFrontRow,
+                  final int indexBackRow) {
         this.currentDeck = deck;
         this.hero = switch (card.getName()) {
             case "Lord Royce" -> new LordRoyce(card);
@@ -50,51 +58,40 @@ public class Player {
         return indexBackRow;
     }
 
-    public void setCurrentDeck(Deck currentDeck) {
-        this.currentDeck = currentDeck;
-    }
-
-    public void setHero(Hero hero) {
+    public void setHero(final Hero hero) {
         this.hero = hero;
     }
 
-    public void setHand(ArrayList<Card> hand) {
-        this.hand = hand;
-    }
-
-    public void setMana(int mana) {
+    public void setMana(final int mana) {
         this.mana = mana;
     }
 
-    public void setIndexFrontRow(int indexFrontRow) {
-        this.indexFrontRow = indexFrontRow;
-    }
-
-    public void setIndexBackRow(int indexBackRow) {
-        this.indexBackRow = indexBackRow;
-    }
-
-    public void defrost(ArrayList<Minion> firstRow, ArrayList<Minion> secondRow) {
+    public void defrost(final ArrayList<Minion> firstRow, final ArrayList<Minion> secondRow) {
         for (Minion minion : firstRow) {
-            if (minion.getIsFrozen() == true)
+            if (minion.getIsFrozen()) {
                 minion.setIsFrozen(false);
+            }
         }
 
         for (Minion minion : secondRow) {
-            if (minion.getIsFrozen() == true)
+            if (minion.getIsFrozen()) {
                 minion.setIsFrozen(false);
+            }
         }
     }
 
-    public void refreshAttackers(ArrayList<Minion> firstRow, ArrayList<Minion> secondRow) {
+    public void refreshAttackers(final ArrayList<Minion> firstRow,
+                                 final ArrayList<Minion> secondRow) {
         for (Minion minion : firstRow) {
-            if (minion.getHasAttacked() == true)
+            if (minion.getHasAttacked()) {
                 minion.setHasAttacked(false);
+            }
         }
 
         for (Minion minion : secondRow) {
-            if (minion.getHasAttacked() == true)
+            if (minion.getHasAttacked()) {
                 minion.setHasAttacked(false);
+            }
         }
     }
 }

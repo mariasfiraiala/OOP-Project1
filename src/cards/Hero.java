@@ -6,33 +6,34 @@ import fileio.CardInput;
 import java.util.ArrayList;
 
 public abstract class Hero extends Card {
+    public static final int HERO_HEALTH = 30;
     private int health;
     @JsonIgnore
     private boolean hasAttacked;
 
-    public Hero(CardInput card) {
+    public Hero(final CardInput card) {
         super(card);
-        this.health = 30;
+        this.health = HERO_HEALTH;
     }
 
-    public Hero(Hero card) {
+    public Hero(final Hero card) {
         super(card);
         this.health = card.health;
     }
     public abstract void heroAction(ArrayList<Minion> cards);
 
-    public int getHealth() {
+    public final int getHealth() {
         return health;
     }
 
-    public void setHealth(int health) {
+    public final void setHealth(final int health) {
         this.health = health;
     }
 
-    public boolean getHasAttacked() {
+    public final boolean getHasAttacked() {
         return hasAttacked;
     }
-    public void setHasAttacked(boolean hasAttacked) {
+    public final void setHasAttacked(final boolean hasAttacked) {
         this.hasAttacked = hasAttacked;
     }
 }
