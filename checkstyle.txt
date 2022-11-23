@@ -1,4 +1,0 @@
-Starting audit...
-[ERROR] /home/maria/Documents/school-work/OOP/OOP-Project1.git/./src/game/Game.java:68:5: Method length is 182 lines (max allowed is 150). [MethodLength]
-Audit done.
-Checkstyle ends with 1 errors.
