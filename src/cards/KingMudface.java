@@ -5,6 +5,10 @@ import fileio.CardInput;
 import java.util.ArrayList;
 
 public final class KingMudface extends Hero {
+    /**
+     * King Mudface attack: Earth Born, +1 health for all cards on row
+     * @param cards the affected row
+     */
     public void heroAction(final ArrayList<Minion> cards) {
         for (Minion card : cards) {
             card.setHealth(((Minion) card).getHealth() + 1);

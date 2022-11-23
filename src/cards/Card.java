@@ -91,6 +91,10 @@ public class Card {
         }
     }
 
+    /**
+     * toString method, used to nicely format the output
+     * @return formatted string
+     */
     public final String toString() {
         return "CardInput{"
                 +  "mana="

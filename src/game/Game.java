@@ -51,11 +51,20 @@ public final class Game {
         }
     }
 
+    /**
+     * shuffles the decks with the given seed
+     */
     public void shuffle() {
         Collections.shuffle(this.player1.getCurrentDeck().getTotalCards(), new Random(seed));
         Collections.shuffle(this.player2.getCurrentDeck().getTotalCards(), new Random(seed));
     }
 
+    /**
+     * applies commands for the given game
+     * @param actions array of actions to be completed
+     * @param output writes in file
+     * @return the winning player of the game, or 0 otherwise
+     */
     public int letThePlayersPlay(final ArrayList<ActionsInput> actions, final ArrayNode output) {
         int howManyPlayersFinishedTheirTurn = 0;
         if (player1.getCurrentDeck().getTotalCards().size() != 0 && player2.getCurrentDeck().

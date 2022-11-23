@@ -66,6 +66,11 @@ public final class Player {
         this.mana = mana;
     }
 
+    /**
+     * sets all frozen Minions as unfrozen
+     * @param firstRow row of cards that need to be defrosted
+     * @param secondRow row of cards that need to be defrosted
+     */
     public void defrost(final ArrayList<Minion> firstRow, final ArrayList<Minion> secondRow) {
         for (Minion minion : firstRow) {
             if (minion.getIsFrozen()) {
@@ -80,6 +85,11 @@ public final class Player {
         }
     }
 
+    /**
+     * sets all Minions that attacked last turn as ready to attack again
+     * @param firstRow row of cards that need to be set as ready to attack
+     * @param secondRow row of cards that need to be set as ready to attack
+     */
     public void refreshAttackers(final ArrayList<Minion> firstRow,
                                  final ArrayList<Minion> secondRow) {
         for (Minion minion : firstRow) {

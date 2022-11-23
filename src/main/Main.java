@@ -73,7 +73,7 @@ public final class Main {
 
         ArrayNode output = objectMapper.createArrayNode();
 
-        PrepareGame gamers = new PrepareGame(inputData, output);
+        PrepareGame game = new PrepareGame(inputData, output);
 
         ObjectWriter objectWriter = objectMapper.writerWithDefaultPrettyPrinter();
         objectWriter.writeValue(new File(filePath2), output);

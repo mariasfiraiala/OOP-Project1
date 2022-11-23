@@ -7,6 +7,10 @@ public final class Statistics {
     private static Statistics instance = null;
     private Statistics() { }
 
+    /**
+     * Singleton pattern for global statistical variables
+     * @return the new instance
+     */
     public static Statistics getInstance() {
         if (instance == null) {
             instance = new Statistics();
@@ -38,6 +42,9 @@ public final class Statistics {
         this.numberOfGames = numberOfGames;
     }
 
+    /**
+     * resets global variables with the default value, 0
+     */
     public void reset() {
         numberOfGames = 0;
         numberWinsPlayer1 = 0;

@@ -5,6 +5,11 @@ import fileio.CardInput;
 import java.util.ArrayList;
 
 public final class HeartHound extends Environment {
+    /**
+     * Heart Hound, Minion with the greatest health is stolen
+     * @param cardsLoser attacked player row of cards
+     * @param cardsWinner attacker player row of cards
+     */
     public void environmentAction(final ArrayList<Minion> cardsLoser,
                                   final ArrayList<Minion> cardsWinner) {
         int indexToSteal = 0;

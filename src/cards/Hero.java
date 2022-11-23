@@ -20,6 +20,11 @@ public abstract class Hero extends Card {
         super(card);
         this.health = card.health;
     }
+
+    /**
+     * attack for heroes
+     * @param cards the affected row
+     */
     public abstract void heroAction(ArrayList<Minion> cards);
 
     public final int getHealth() {

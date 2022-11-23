@@ -30,10 +30,10 @@ public final class Commands {
     public static class RegularCommands {
         /**
          * placeCard action implementation
-         * @param handIdx
-         * @param player
-         * @param table
-         * @param output
+         * @param handIdx card index from hand
+         * @param player player that places the card
+         * @param table memorizes all cards from table
+         * @param output writes in file
          */
         public static void placeCard(final int handIdx, final Player player,
                                      final ArrayList<Minion>[] table, final ArrayNode output) {
@@ -79,12 +79,12 @@ public final class Commands {
 
         /**
          * cardUsesAttack implementation
-         * @param cardAttacker
-         * @param cardAttacked
-         * @param attacker
-         * @param attacked
-         * @param table
-         * @param output
+         * @param cardAttacker coordinates for the attacker card (its place on the table)
+         * @param cardAttacked coordinates for the attacked card (its place on the table)
+         * @param attacker attacker player
+         * @param attacked attacked player
+         * @param table memorizes all cards from table
+         * @param output writes in file
          */
         public static void cardUsesAttack(final Coordinates cardAttacker,
                                           final Coordinates cardAttacked,
@@ -141,12 +141,12 @@ public final class Commands {
 
         /**
          * useEnvironmentCard action implementation
-         * @param handIdx
-         * @param affectedRow
-         * @param attacker
-         * @param attacked
-         * @param table
-         * @param output
+         * @param handIdx card index from hand
+         * @param affectedRow row attacked by environment card
+         * @param attacker attacker player
+         * @param attacked attacked player
+         * @param table memorizes all cards from table
+         * @param output writes in file
          */
 
         public static void useEnvironmentCard(final int handIdx, final int affectedRow,
@@ -192,12 +192,12 @@ public final class Commands {
 
         /**
          * cardUsesAbility action implementation
-         * @param cardAttacker
-         * @param cardAttacked
-         * @param attacker
-         * @param attacked
-         * @param table
-         * @param output
+         * @param cardAttacker coordinates for the attacker card (its place on the table)
+         * @param cardAttacked coordinates for the attacked card (its place on the table)
+         * @param attacker attacker player
+         * @param attacked attacked player
+         * @param table memorizes all cards from table
+         * @param output writes in file
          */
 
         public static void cardUsesAbility(final Coordinates cardAttacker,
@@ -285,12 +285,12 @@ public final class Commands {
 
         /**
          * useAttackHero action implementation
-         * @param cardAttacker
-         * @param attacker
-         * @param attacked
-         * @param table
-         * @param output
-         * @return
+         * @param cardAttacker coordinates for the attacker card (its place on the table)
+         * @param attacker attacker player
+         * @param attacked attacked player
+         * @param table memorizes all cards from table
+         * @param output writes in file
+         * @return the index of the winner player or 0 otherwise
          */
         public static int useAttackHero(final Coordinates cardAttacker, final Player attacker,
                                         final Player attacked,
@@ -350,11 +350,11 @@ public final class Commands {
 
         /**
          * useHeroAbility action implementation
-         * @param affectedRow
-         * @param attacker
-         * @param attacked
-         * @param table
-         * @param output
+         * @param affectedRow row attacked by environment card
+         * @param attacker attacker player
+         * @param attacked attacked player
+         * @param table memorizes all cards from table
+         * @param output writes in file
          */
         public static void useHeroAbility(final int affectedRow, final Player attacker,
                                           final Player attacked,
@@ -398,9 +398,9 @@ public final class Commands {
     public static class DebugCommands {
         /**
          * getPlayerDeck action implementation
-         * @param playerIdx
-         * @param player
-         * @param output
+         * @param playerIdx index of the player for which we print the deck
+         * @param player the player we get info from
+         * @param output writes in file
          */
         public static void getPlayerDeck(final int playerIdx, final Player player,
                                          final ArrayNode output) {
@@ -452,9 +452,9 @@ public final class Commands {
 
         /**
          * getPlayerHero action implementation
-         * @param playerIdx
-         * @param player
-         * @param output
+         * @param playerIdx index of the player for which we print the hero
+         * @param player the player we get info from
+         * @param output writes in file
          */
         public static void getPlayerHero(final int playerIdx, final Player player,
                                          final ArrayNode output) {
@@ -483,8 +483,8 @@ public final class Commands {
 
         /**
          * getPlayerTurn action implementation
-         * @param player
-         * @param output
+         * @param player the player we get info from
+         * @param output writes in file
          */
         public static void getPlayerTurn(final Player player, final ArrayNode output) {
             ObjectNode node = JsonNodeFactory.instance.objectNode();
@@ -502,9 +502,9 @@ public final class Commands {
 
         /**
          * getCardsInHand action implementation
-         * @param playerIdx
-         * @param player
-         * @param output
+         * @param playerIdx index of the player for which we print the cards in hand
+         * @param player the player we get info from
+         * @param output writes in file
          */
         public static void getCardsInHand(final int playerIdx, final Player player,
                                           final ArrayNode output) {
@@ -555,9 +555,9 @@ public final class Commands {
 
         /**
          * getPlayerMana action implementation
-         * @param playerIdx
-         * @param player
-         * @param output
+         * @param playerIdx index of the player for which we print the mana
+         * @param player the player we get info from
+         * @param output writes in file
          */
         public static void getPlayerMana(final int playerIdx, final Player player,
                                          final ArrayNode output) {
@@ -572,8 +572,8 @@ public final class Commands {
 
         /**
          * getCardsOnTable action implementation
-         * @param table
-         * @param output
+         * @param table all four rows of cards
+         * @param output writes in file
          */
         public static void getCardsOnTable(final ArrayList<Minion>[] table,
                                            final ArrayNode output) {
@@ -595,9 +595,9 @@ public final class Commands {
 
         /**
          * getEnvironmentCardsInHand action implementation
-         * @param playerIdx
-         * @param hand
-         * @param output
+         * @param playerIdx index of the player for which we print the environment cards
+         * @param hand all cards for the given player
+         * @param output writes in file
          */
         public static void getEnvironmentCardsInHand(final int playerIdx,
                                                      final ArrayList<Card> hand,
@@ -629,10 +629,10 @@ public final class Commands {
 
         /**
          * getCardAtPosition action implementation
-         * @param x
-         * @param y
-         * @param table
-         * @param output
+         * @param x index used to get card from table
+         * @param y index used to get card from table
+         * @param table matrix of cards
+         * @param output writes in file
          */
         public static void getCardAtPosition(final int x, final int y,
                                              final ArrayList<Minion>[] table,
@@ -653,8 +653,8 @@ public final class Commands {
 
         /**
          * getFrozenCardsOnTable action implementation
-         * @param table
-         * @param output
+         * @param table all active Minions for the game
+         * @param output writes in file
          */
         public static void getFrozenCardsOnTable(final ArrayList<Minion>[] table,
                                                  final ArrayNode output) {
@@ -681,8 +681,8 @@ public final class Commands {
 
         /**
          * getPlayerOneWins statistical action implementation
-         * @param playerOneWins
-         * @param output
+         * @param playerOneWins total wins of the first player
+         * @param output writes in file
          */
         public static void getPlayerOneWins(final int playerOneWins, final ArrayNode output) {
             ObjectNode node = JsonNodeFactory.instance.objectNode();
@@ -693,8 +693,8 @@ public final class Commands {
 
         /**
          * getPlayerTwoWins statistical action implementation
-         * @param playerTwoWins
-         * @param output
+         * @param playerTwoWins total wins of the second player
+         * @param output writes in file
          */
         public static void getPlayerTwoWins(final int playerTwoWins, final ArrayNode output) {
             ObjectNode node = JsonNodeFactory.instance.objectNode();
@@ -705,8 +705,8 @@ public final class Commands {
 
         /**
          * getTotalGamesPlayed statistical action implementation
-         * @param totalGamesPlayed
-         * @param output
+         * @param totalGamesPlayed number of games played by both players
+         * @param output writes in file
          */
         public static void getTotalGamesPlayed(final int totalGamesPlayed,
                                                final ArrayNode output) {
