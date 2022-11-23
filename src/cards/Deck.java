@@ -7,7 +7,6 @@ import java.util.ArrayList;
 public final class Deck {
     private ArrayList<Card> totalCards;
     private int noCardsInDeck;
-
     public ArrayList<Card> getTotalCards() {
         return totalCards;
     }
