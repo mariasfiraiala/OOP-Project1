@@ -49,5 +49,5 @@ It's possible to do so as we've marked the methods as `static`.
 
 Once we've got our information safely saved in objects, the gameplay flow becomes easier to follow: each command is implemented as mentioned in our rules.
 
-**Note**: Once the hero of one of our players is killed, the `whoWon` flag is set and any command that affects the table (or that isn't of debug type) is bloked from being applied.
+**Note**: Once the hero of one of our players is killed, the `whoWon` flag is set and any command that affects the table (or that isn't of debug type) is blocked from being applied.
 We also set the statistical global variables with the needed information in order for it to be able to be printed right away.
